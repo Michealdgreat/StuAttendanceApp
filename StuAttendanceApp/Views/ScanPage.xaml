@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="StuAttendanceApp.Views.ScanPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:vm="clr-namespace:StuAttendanceApp.ViewModels"
+    x:DataType="vm:ScanViewModel">
+
+    <VerticalStackLayout>
+        <skia:SKLottieView
+            Background="White"
+            RepeatCount="-1"
+            RepeatMode="Restart"
+            Source="maa-goat-lottie.json"
+            WidthRequest="100" />
+
+        <Button Text="Read RFID" Command="{Binding ReadRfidCommand}" />
+        <Label Text="{Binding RfidTag}" />
+
+    </VerticalStackLayout>
+</ContentPage>
