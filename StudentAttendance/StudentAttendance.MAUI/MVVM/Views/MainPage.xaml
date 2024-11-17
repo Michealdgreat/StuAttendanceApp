@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<page:BaseContentPage
+    x:Class="StudentAttendance.MAUI.MVVM.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:page="clr-namespace:StudentAttendance.MAUI.MVVM.Views"
+    xmlns:vm="clr-namespace:StudentAttendance.MAUI.MVVM.ViewModels"
+    Title="Messenger"
+    x:DataType="vm:MainViewModel">
+    <VerticalStackLayout VerticalOptions="Center">
+        <StackLayout
+            Margin="10"
+            Padding="1"
+            BackgroundColor="LightGray">
+            <Editor
+                AutoSize="TextChanges"
+                BackgroundColor="White"
+                HeightRequest="250"
+                MaxLength="250"
+                Placeholder="Write something you would like to share..." />
+        </StackLayout>
+        <Button
+            Margin="15,0,15,0"
+            BackgroundColor="Blue"
+            Text="Send Text"
+            TextColor="White" />
+    </VerticalStackLayout>
+</page:BaseContentPage>
