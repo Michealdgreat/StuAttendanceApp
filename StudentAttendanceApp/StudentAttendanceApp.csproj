@@ -21,10 +21,10 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>SAApp</ApplicationTitle>
+		<ApplicationTitle>TapIn</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.CENTRIA.studentattendanceapp</ApplicationId>
+		<ApplicationId>com.CENTRIA.TapIn</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -73,6 +73,7 @@
 
 	<ItemGroup>
 		<Folder Include="MVVM\Models\" />
+		<Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
