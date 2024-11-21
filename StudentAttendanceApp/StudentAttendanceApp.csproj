@@ -72,6 +72,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiXaml Update="MVVM\Views\HomePage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="MVVM\Views\ScanPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>

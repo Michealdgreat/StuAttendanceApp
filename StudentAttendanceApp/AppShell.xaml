@@ -10,8 +10,8 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate view:ScanPage}"
-        Route="MainPage" />
+        ContentTemplate="{DataTemplate view:HomePage}"
+        Route="Home" />
 
     <ShellContent
         Title="sCAN pAGE"
