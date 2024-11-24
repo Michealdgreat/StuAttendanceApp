@@ -8,12 +8,17 @@
     xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    Title="Login"
     Padding="30"
     x:DataType="vm:LoginViewModel"
     BackgroundColor="{StaticResource Gray650}"
-    Shell.BackgroundColor="#1C1C1C"
+    HideSoftInputOnTapped="True"
     mc:Ignorable="d">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
+    </ContentPage.Behaviors>
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>

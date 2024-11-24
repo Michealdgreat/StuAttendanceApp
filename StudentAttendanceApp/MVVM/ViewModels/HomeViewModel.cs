@@ -14,13 +14,13 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         [RelayCommand]
         public async Task LoginYourAccount()
         {
-            await Shell.Current.GoToAsync(nameof(LoginPage));
+            // await Shell.Current.GoToAsync(nameof(LoginPage));
         }
 
         [RelayCommand]
         public async Task RegisterForAnAccount()
         {
-            await Shell.Current.GoToAsync(nameof(RegisterPage));
+            //await Shell.Current.GoToAsync(nameof(RegisterPage));
         }
     }
 }

@@ -8,56 +8,64 @@
     xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
-    Title="Welcome"
     Padding="20"
     x:DataType="vm:HomeViewModel"
     BackgroundColor="{StaticResource Gray650}"
-    Shell.BackgroundColor="#348a53"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
     mc:Ignorable="d">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
+    </ContentPage.Behaviors>
     <ContentPage.BindingContext>
         <vm:HomeViewModel />
     </ContentPage.BindingContext>
 
     <ScrollView
         HorizontalScrollBarVisibility="Never"
-        VerticalOptions="Center"
         VerticalScrollBarVisibility="Never">
-        <StackLayout>
+        <VerticalStackLayout>
             <Label
                 Margin="0,20,0,30"
                 FontFamily="StudentMediumFont"
                 FontSize="30"
                 HorizontalOptions="Center"
                 Text="Welcome" />
-            <HorizontalStackLayout Margin="0,0,0,50" HorizontalOptions="Center">
-                <Image
-                    Margin="0,0,10,0"
-                    HeightRequest="70"
-                    Source="click_icon" />
-                <Label
-                    FontFamily="StudentBlackFont"
-                    FontSize="70"
-                    HorizontalOptions="Center"
-                    Text="Tap-In"
-                    TextColor="White"
-                    VerticalOptions="Center" />
-            </HorizontalStackLayout>
+            <VerticalStackLayout>
+                <HorizontalStackLayout Margin="0,0,0,50" HorizontalOptions="Center">
+                    <Image
+                        Margin="0,0,10,0"
+                        HeightRequest="70"
+                        Source="click_icon" />
+                    <Label
+                        FontFamily="StudentBlackFont"
+                        FontSize="70"
+                        HorizontalOptions="Center"
+                        Text="Tap-In"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <skia:SKLottieView
+                    Margin="0,60,0,30"
+                    Background="{StaticResource Gray650}"
+                    HeightRequest="200"
+                    Opacity=".8"
+                    RepeatCount="-1"
+                    RepeatMode="Restart"
+                    Scale="2"
+                    Source="welcomeanimation.json" />
 
-            <skia:SKLottieView
-                Margin="0,60,0,10"
-                Background="{StaticResource Gray650}"
-                HeightRequest="200"
-                RepeatCount="-1"
-                RepeatMode="Restart"
-                Scale="2"
-                Source="welcomeanimation.json" />
 
-            <VerticalStackLayout Margin="0,50,0,0" Spacing="20">
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout Margin="0,80,0,0" Spacing="20">
 
                 <Button
                     BackgroundColor="{StaticResource Primary}"
-                    Command="{Binding LoginYourAccountCommand}"
+                    Clicked="Login_Button_Clicked"
                     FontFamily="StudentBlackFont"
                     FontSize="22"
                     HeightRequest="50"
@@ -66,7 +74,7 @@
                     WidthRequest="300" />
                 <Button
                     BackgroundColor="{StaticResource Primary}"
-                    Command="{Binding RegisterForAnAccountCommand}"
+                    Clicked="Register_Button_Clicked"
                     FontFamily="StudentBlackFont"
                     FontSize="22"
                     HeightRequest="50"
@@ -77,7 +85,7 @@
 
 
 
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 
 

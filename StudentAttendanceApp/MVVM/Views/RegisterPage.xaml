@@ -7,38 +7,78 @@
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
     xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    Title="Register"
     Padding="20"
     x:DataType="vm:RegisterViewModel"
     BackgroundColor="{StaticResource Gray650}"
     HideSoftInputOnTapped="True"
-    Shell.BackgroundColor="#1C1C1C"
     mc:Ignorable="d">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
+    </ContentPage.Behaviors>
     <ContentPage.BindingContext>
         <vm:RegisterViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                Margin="0,20,0,0"
-                FontFamily="StudentBlackFont"
-                FontSize="50"
-                HorizontalOptions="Center"
-                Text="Register"
-                TextColor="White"
-                VerticalOptions="Center" />
+        <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <Label
+                    Margin="0,20,0,0"
+                    FontFamily="StudentBlackFont"
+                    FontSize="50"
+                    HorizontalOptions="Center"
+                    Text="Register"
+                    TextColor="White"
+                    VerticalOptions="Center" />
 
-            <Image
-                Margin="0,20,10,0"
-                HeightRequest="70"
-                Source="user_icon" />
+                <Image
+                    Margin="0,20,10,0"
+                    HeightRequest="70"
+                    Source="user_icon" />
 
-            <VerticalStackLayout
-                Margin="0,30,0,0"
-                Padding="20"
-                Spacing="10">
+                <VerticalStackLayout
+                    Margin="0,30,0,0"
+                    Padding="20"
+                    Spacing="10">
 
-                <Grid ColumnDefinitions=".5*,.5*">
+                    <Grid ColumnDefinitions=".5*,.5*">
+
+                        <Border
+                            Margin="5"
+                            BackgroundColor="#404040"
+                            Stroke="#404040">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <FieldEntry:FormHelper
+                                Margin="10,0,0,0"
+                                FontFamily="StudentSemiBoldFont"
+                                FontSize="17"
+                                HeightRequest="50"
+                                Placeholder="First Name" />
+                        </Border>
+
+                        <Border
+                            Grid.Column="1"
+                            Margin="5"
+                            BackgroundColor="#404040"
+                            Stroke="#404040">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <FieldEntry:FormHelper
+                                Margin="10,0,0,0"
+                                FontFamily="StudentSemiBoldFont"
+                                FontSize="17"
+                                HeightRequest="50"
+                                Placeholder="Last Name" />
+                        </Border>
+
+                    </Grid>
 
                     <Border
                         Margin="5"
@@ -53,11 +93,10 @@
                             FontFamily="StudentSemiBoldFont"
                             FontSize="17"
                             HeightRequest="50"
-                            Placeholder="First Name" />
+                            Placeholder="Email" />
                     </Border>
 
                     <Border
-                        Grid.Column="1"
                         Margin="5"
                         BackgroundColor="#404040"
                         Stroke="#404040">
@@ -70,69 +109,37 @@
                             FontFamily="StudentSemiBoldFont"
                             FontSize="17"
                             HeightRequest="50"
-                            Placeholder="Last Name" />
+                            Placeholder="Group" />
                     </Border>
 
-                </Grid>
+                    <Border
+                        Margin="5"
+                        BackgroundColor="#404040"
+                        Stroke="{StaticResource Primary}">
 
-                <Border
-                    Margin="5"
-                    BackgroundColor="#404040"
-                    Stroke="#404040">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <FieldEntry:FormHelper
+                            Margin="10,0,0,0"
+                            FontFamily="StudentSemiBoldFont"
+                            FontSize="17"
+                            HeightRequest="50"
+                            Placeholder="Tag Id" />
+                    </Border>
+                </VerticalStackLayout>
 
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10" />
-                    </Border.StrokeShape>
-                    <FieldEntry:FormHelper
-                        Margin="10,0,0,0"
-                        FontFamily="StudentSemiBoldFont"
-                        FontSize="17"
-                        HeightRequest="50"
-                        Placeholder="Email" />
-                </Border>
+                <Button
+                    BackgroundColor="{StaticResource Primary}"
+                    FontFamily="StudentBlackFont"
+                    FontSize="22"
+                    HeightRequest="50"
+                    Text="Continue"
+                    TextColor="White"
+                    WidthRequest="300" />
 
-                <Border
-                    Margin="5"
-                    BackgroundColor="#404040"
-                    Stroke="#404040">
+            </StackLayout>
+        </ScrollView>
 
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10" />
-                    </Border.StrokeShape>
-                    <FieldEntry:FormHelper
-                        Margin="10,0,0,0"
-                        FontFamily="StudentSemiBoldFont"
-                        FontSize="17"
-                        HeightRequest="50"
-                        Placeholder="Group" />
-                </Border>
-
-                <Border
-                    Margin="5"
-                    BackgroundColor="#404040"
-                    Stroke="{StaticResource Primary}">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10" />
-                    </Border.StrokeShape>
-                    <FieldEntry:FormHelper
-                        Margin="10,0,0,0"
-                        FontFamily="StudentSemiBoldFont"
-                        FontSize="17"
-                        HeightRequest="50"
-                        Placeholder="Tag Id" />
-                </Border>
-            </VerticalStackLayout>
-
-            <Button
-                BackgroundColor="{StaticResource Primary}"
-                FontFamily="StudentBlackFont"
-                FontSize="22"
-                HeightRequest="50"
-                Text="Continue"
-                TextColor="White"
-                WidthRequest="300" />
-
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
