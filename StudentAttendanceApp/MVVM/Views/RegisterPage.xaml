@@ -3,10 +3,12 @@
     x:Class="StudentAttendanceApp.MVVM.Views.RegisterPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FieldEntry="clr-namespace:StudentAttendanceApp.Services"
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
     xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    Padding="20"
     x:DataType="vm:RegisterViewModel"
     BackgroundColor="#1C1C1C"
     Shell.BackgroundColor="#1C1C1C"
@@ -17,10 +19,89 @@
     <ContentPage.Content>
         <StackLayout>
             <Label
+                Margin="0,20,0,0"
+                FontFamily="StudentBlackFont"
+                FontSize="50"
                 HorizontalOptions="Center"
-                Text="Welcome to .NET MAUI!!!"
-                TextColor="Purple"
+                Text="Register"
+                TextColor="White"
                 VerticalOptions="Center" />
+
+            <VerticalStackLayout Margin="0,50,0,0" Padding="20">
+
+                <Grid ColumnDefinitions=".5*,.5*">
+
+                    <Border
+                        Margin="5"
+                        BackgroundColor="#404040"
+                        Stroke="#404040">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <FieldEntry:FormHelper
+                            Margin="10,0,0,0"
+                            FontFamily="StudentSemiBoldFont"
+                            FontSize="17"
+                            HeightRequest="50"
+                            Placeholder="First Name" />
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        Margin="5"
+                        BackgroundColor="#404040"
+                        Stroke="#404040">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <FieldEntry:FormHelper
+                            Margin="10,0,0,0"
+                            FontFamily="StudentSemiBoldFont"
+                            FontSize="17"
+                            HeightRequest="50"
+                            Placeholder="Last Name" />
+                    </Border>
+
+                </Grid>
+                <Border
+                    Margin="10"
+                    BackgroundColor="#404040"
+                    Stroke="#404040">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <FieldEntry:FormHelper
+                        Margin="10,0,0,0"
+                        FontFamily="StudentSemiBoldFont"
+                        FontSize="17"
+                        HeightRequest="50"
+                        Placeholder="First Name" />
+                </Border>
+
+                <Border
+                    Margin="10"
+                    BackgroundColor="#404040"
+                    Stroke="#404040">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <FieldEntry:FormHelper
+                        Margin="10,0,0,0"
+                        FontFamily="StudentSemiBoldFont"
+                        FontSize="17"
+                        HeightRequest="50"
+                        Placeholder="Last Name" />
+                </Border>
+
+
+            </VerticalStackLayout>
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

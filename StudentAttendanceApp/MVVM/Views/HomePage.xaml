@@ -7,61 +7,78 @@
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
     xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    Title="Welcome"
     Padding="20"
     x:DataType="vm:HomeViewModel"
-    BackgroundColor="#1C1C1C"
-    Shell.BackgroundColor="#1C1C1C"
+    BackgroundColor="{StaticResource Gray650}"
+    Shell.BackgroundColor="#348a53"
     mc:Ignorable="d">
     <ContentPage.BindingContext>
         <vm:HomeViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout>
-        <Label
-            FontFamily="StudentBlackFont"
-            FontSize="50"
-            HorizontalOptions="Center"
-            Text="Tap-In"
-            TextColor="White"
-            VerticalOptions="Center" />
+    <ScrollView
+        HorizontalScrollBarVisibility="Never"
+        VerticalOptions="Center"
+        VerticalScrollBarVisibility="Never">
+        <StackLayout>
+            <Label
+                Margin="0,20,0,30"
+                FontFamily="StudentMediumFont"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="Welcome" />
+            <HorizontalStackLayout Margin="0,0,0,50" HorizontalOptions="Center">
+                <Image
+                    Margin="0,0,10,0"
+                    HeightRequest="70"
+                    Source="click_icon" />
+                <Label
+                    FontFamily="StudentBlackFont"
+                    FontSize="70"
+                    HorizontalOptions="Center"
+                    Text="Tap-In"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
 
-        <VerticalStackLayout Margin="0,50,0,0">
-            <Border
-                Margin="20"
-                BackgroundColor="#404040"
-                Stroke="#404040">
+            <skia:SKLottieView
+                Margin="0,60,0,10"
+                Background="{StaticResource Gray650}"
+                HeightRequest="200"
+                RepeatCount="-1"
+                RepeatMode="Restart"
+                Scale="2"
+                Source="welcomeanimation.json" />
 
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10" />
-                </Border.StrokeShape>
-                <FieldEntry:FormHelper
-                    Margin="10,0,0,-8"
-                    FontFamily="StudentSemiBoldFont"
-                    FontSize="25"
-                    HeightRequest="80"
-                    Placeholder="First Name" />
-            </Border>
+            <VerticalStackLayout Margin="0,50,0,0" Spacing="20">
 
-            <Border
-                Margin="20"
-                BackgroundColor="#404040"
-                Stroke="#404040">
-
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="10" />
-                </Border.StrokeShape>
-                <FieldEntry:FormHelper
-                    Margin="10,0,0,-8"
-                    FontFamily="StudentSemiBoldFont"
-                    FontSize="25"
-                    HeightRequest="80"
-                    Placeholder="Last Name" />
-            </Border>
-        </VerticalStackLayout>
+                <Button
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding LoginYourAccountCommand}"
+                    FontFamily="StudentBlackFont"
+                    FontSize="22"
+                    HeightRequest="50"
+                    Text="Login"
+                    TextColor="White"
+                    WidthRequest="300" />
+                <Button
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding RegisterForAnAccountCommand}"
+                    FontFamily="StudentBlackFont"
+                    FontSize="22"
+                    HeightRequest="50"
+                    Text="Register"
+                    TextColor="White"
+                    WidthRequest="300" />
+            </VerticalStackLayout>
 
 
 
-    </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
 
 </ContentPage>
