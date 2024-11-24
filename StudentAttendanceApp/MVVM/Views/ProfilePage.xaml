@@ -8,19 +8,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
     x:DataType="vm:ProfileViewModel"
-    BackgroundColor="#1C1C1C"
-    Shell.BackgroundColor="#1C1C1C"
+    BackgroundColor="{StaticResource Gray650}"
+    Shell.BackgroundColor="{StaticResource Primary}"
     mc:Ignorable="d">
     <ContentPage.BindingContext>
         <vm:ProfileViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="Center"
-                Text="Welcome to .NET MAUI!!!"
-                TextColor="Purple"
-                VerticalOptions="Center" />
-        </StackLayout>
+        <ScrollView>
+            <VerticalStackLayout>
+
+                <Border
+                    Margin="20"
+                    BackgroundColor="#404040"
+                    HeightRequest="150"
+                    Stroke="{StaticResource Primary}"
+                    StrokeThickness="10"
+                    WidthRequest="150">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="100" />
+                    </Border.StrokeShape>
+                    <Image HeightRequest="100" Source="user_icon" />
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -10,7 +10,8 @@
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
     Padding="20"
     x:DataType="vm:RegisterViewModel"
-    BackgroundColor="#1C1C1C"
+    BackgroundColor="{StaticResource Gray650}"
+    HideSoftInputOnTapped="True"
     Shell.BackgroundColor="#1C1C1C"
     mc:Ignorable="d">
     <ContentPage.BindingContext>
@@ -27,7 +28,15 @@
                 TextColor="White"
                 VerticalOptions="Center" />
 
-            <VerticalStackLayout Margin="0,50,0,0" Padding="20">
+            <Image
+                Margin="0,20,10,0"
+                HeightRequest="70"
+                Source="user_icon" />
+
+            <VerticalStackLayout
+                Margin="0,30,0,0"
+                Padding="20"
+                Spacing="10">
 
                 <Grid ColumnDefinitions=".5*,.5*">
 
@@ -65,8 +74,9 @@
                     </Border>
 
                 </Grid>
+
                 <Border
-                    Margin="10"
+                    Margin="5"
                     BackgroundColor="#404040"
                     Stroke="#404040">
 
@@ -78,11 +88,11 @@
                         FontFamily="StudentSemiBoldFont"
                         FontSize="17"
                         HeightRequest="50"
-                        Placeholder="First Name" />
+                        Placeholder="Email" />
                 </Border>
 
                 <Border
-                    Margin="10"
+                    Margin="5"
                     BackgroundColor="#404040"
                     Stroke="#404040">
 
@@ -94,13 +104,34 @@
                         FontFamily="StudentSemiBoldFont"
                         FontSize="17"
                         HeightRequest="50"
-                        Placeholder="Last Name" />
+                        Placeholder="Group" />
                 </Border>
 
+                <Border
+                    Margin="5"
+                    BackgroundColor="#404040"
+                    Stroke="{StaticResource Primary}">
 
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <FieldEntry:FormHelper
+                        Margin="10,0,0,0"
+                        FontFamily="StudentSemiBoldFont"
+                        FontSize="17"
+                        HeightRequest="50"
+                        Placeholder="Tag Id" />
+                </Border>
             </VerticalStackLayout>
 
-
+            <Button
+                BackgroundColor="{StaticResource Primary}"
+                FontFamily="StudentBlackFont"
+                FontSize="22"
+                HeightRequest="50"
+                Text="Continue"
+                TextColor="White"
+                WidthRequest="300" />
 
         </StackLayout>
     </ContentPage.Content>
