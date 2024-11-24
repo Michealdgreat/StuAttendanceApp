@@ -8,7 +8,7 @@
     <Color x:Key="PrimaryDark">#ac99ea</Color>
     <Color x:Key="PrimaryDarkText">#242424</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="SecondaryDarkText">#9880e5</Color>
+    <Color x:Key="SecondaryDarkText">#348a53</Color>
     <Color x:Key="Tertiary">#348a53</Color>
 
     <Color x:Key="White">White</Color>
@@ -22,6 +22,7 @@
     <Color x:Key="Gray300">#ACACAC</Color>
     <Color x:Key="Gray400">#919191</Color>
     <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray650">#2C2C2C</Color>
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
