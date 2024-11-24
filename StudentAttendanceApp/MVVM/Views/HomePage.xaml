@@ -10,10 +10,8 @@
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
     Padding="20"
     x:DataType="vm:HomeViewModel"
-    BackgroundColor="{AppThemeBinding Dark=#212121,
-                                      Light=White}"
-    Shell.BackgroundColor="{AppThemeBinding Dark=#212121,
-                                            Light=White}"
+    BackgroundColor="#1C1C1C"
+    Shell.BackgroundColor="#1C1C1C"
     mc:Ignorable="d">
     <ContentPage.BindingContext>
         <vm:HomeViewModel />
