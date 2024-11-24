@@ -5,18 +5,43 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:StudentAttendanceApp"
     xmlns:view="clr-namespace:StudentAttendanceApp.MVVM.Views"
-    Title="StudentAttendanceApp"
-    Shell.FlyoutBehavior="Flyout">
+    Title="Tap-In"
+    BackgroundColor="#1C1C1C"
+    Shell.PresentationMode="Animated"
+    Shell.TabBarTitleColor="White">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate view:HomePage}"
-        Route="Home" />
 
-    <ShellContent
-        Title="sCAN pAGE"
-        ContentTemplate="{DataTemplate view:ScanPage}"
-        Route="MainPage" />
+    <TabBar>
+
+        <Tab Title="Home" Icon="click_icon">
+            <ShellContent
+                ContentTemplate="{DataTemplate view:HomePage}"
+                Route="HomePage"
+                Shell.NavBarIsVisible="True"
+                Shell.TabBarBackgroundColor="#1C1C1C"
+                Shell.TabBarForegroundColor="#348a53"
+                Shell.TitleColor="White" />
+        </Tab>
+
+        <Tab Title="Tap-In" Icon="target_icon">
+            <ShellContent
+                ContentTemplate="{DataTemplate view:ScanPage}"
+                Route="ScanPage"
+                Shell.TabBarBackgroundColor="#1C1C1C"
+                Shell.TabBarForegroundColor="#348a53"
+                Shell.TitleColor="White" />
+        </Tab>
+
+        <Tab Title="Profile" Icon="user_icon">
+            <ShellContent
+                ContentTemplate="{DataTemplate view:ProfilePage}"
+                Route="ProfilePage"
+                Shell.TabBarBackgroundColor="#1C1C1C"
+                Shell.TabBarForegroundColor="#348a53"
+                Shell.TitleColor="White" />
+        </Tab>
+
+    </TabBar>
 
 
 </Shell>

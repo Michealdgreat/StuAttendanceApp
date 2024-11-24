@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using StudentAttendanceApp.MVVM.ViewModels;
+using StudentAttendanceApp.MVVM.Views;
 
 namespace StudentAttendanceApp
 {
@@ -27,6 +29,20 @@ namespace StudentAttendanceApp
                     fonts.AddFont("StudentAttendanceIconFonts.ttf", "StudentIconFont");
 
                 });
+
+
+            builder.Services.AddTransient<ProfilePage>();
+            builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<ScanPage>();
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<HomePage>();
+
+            builder.Services.AddSingleton<ProfileViewModel>();
+            builder.Services.AddSingleton<RegisterViewModel>();
+            builder.Services.AddSingleton<ScanViewModel>();
+            builder.Services.AddSingleton<LoginViewModel>();
+            builder.Services.AddSingleton<HomeViewModel>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
