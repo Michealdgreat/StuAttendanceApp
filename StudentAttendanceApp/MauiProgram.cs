@@ -3,13 +3,17 @@ using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using StudentAttendanceApp.MVVM.ViewModels;
 using StudentAttendanceApp.MVVM.Views;
+using StudentAttendanceApp.Services;
 
 namespace StudentAttendanceApp
 {
     public static class MauiProgram
     {
+        public static IServiceProvider? ServiceProvider { get; private set; }
         public static MauiApp CreateMauiApp()
         {
+
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -36,19 +40,29 @@ namespace StudentAttendanceApp
             builder.Services.AddTransient<ScanPage>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<HomePage>();
+            builder.Services.AddTransient<IndexPage>();
+
 
             builder.Services.AddSingleton<ProfileViewModel>();
             builder.Services.AddSingleton<RegisterViewModel>();
             builder.Services.AddSingleton<ScanViewModel>();
             builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<HomeViewModel>();
+            builder.Services.AddSingleton<IndexViewModel>();
+
+
+
+            builder.Services.AddSingleton<CommonService>();
+
 
 
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            var app = builder.Build();
 
-            return builder.Build();
+            ServiceProvider = app.Services;
+            return app;
         }
     }
 }

@@ -15,8 +15,8 @@
 
         <Tab Title="Home" Icon="click_icon">
             <ShellContent
-                ContentTemplate="{DataTemplate view:ProfilePage}"
-                Route="ProfilePage"
+                ContentTemplate="{DataTemplate view:IndexPage}"
+                Route="IndexPage"
                 Shell.NavBarIsVisible="True"
                 Shell.TabBarBackgroundColor="#1C1C1C"
                 Shell.TabBarForegroundColor="#348a53"
