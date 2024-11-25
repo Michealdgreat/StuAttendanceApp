@@ -90,6 +90,7 @@
 
                 <Button
                     BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding LoginButtonCommand}"
                     FontFamily="StudentBlackFont"
                     FontSize="22"
                     HeightRequest="50"

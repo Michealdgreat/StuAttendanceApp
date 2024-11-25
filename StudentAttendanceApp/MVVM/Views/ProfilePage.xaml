@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    Padding="20"
     x:DataType="vm:ProfileViewModel"
     BackgroundColor="{StaticResource Gray650}"
     Shell.BackgroundColor="{StaticResource Primary}"
@@ -16,21 +17,124 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
-            <VerticalStackLayout>
+            <VerticalStackLayout Margin="50">
 
                 <Border
                     Margin="20"
                     BackgroundColor="#404040"
-                    HeightRequest="150"
+                    HeightRequest="130"
                     Stroke="{StaticResource Primary}"
                     StrokeThickness="10"
-                    WidthRequest="150">
+                    WidthRequest="130">
 
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="100" />
+                        <RoundRectangle CornerRadius="130" />
                     </Border.StrokeShape>
-                    <Image HeightRequest="100" Source="user_icon" />
+                    <Image HeightRequest="70" Source="user_icon" />
                 </Border>
+
+                <HorizontalStackLayout
+                    Margin="20"
+                    HorizontalOptions="Center"
+                    Spacing="10">
+
+                    <Label
+                        FontFamily="StudentBoldFont"
+                        FontSize="Title"
+                        Text="First Name" />
+                    <Label
+                        FontFamily="StudentBoldFont"
+                        FontSize="Title"
+                        Text="Last Name" />
+                </HorizontalStackLayout>
+
+
+                <Border
+                    Margin="20"
+                    BackgroundColor="#404040"
+                    HeightRequest="50"
+                    Stroke="{StaticResource Primary}"
+                    StrokeThickness="2">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <Label
+                        FontFamily="StudentBlackFont"
+                        CharacterSpacing="2"
+                        FontSize="Title"
+                        HorizontalOptions="Center"
+                        Text="NITS23K"
+                        VerticalOptions="Center" />
+
+                </Border>
+
+                <Border
+                    Margin="20"
+                    BackgroundColor="{StaticResource Primary}"
+                    HeightRequest="80"
+                    Stroke="{StaticResource Primary}"
+                    StrokeThickness="2">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20" />
+                    </Border.StrokeShape>
+                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Label
+                            FontFamily="StudentBoldFont"
+                            FontSize="Title"
+                            HorizontalOptions="Center"
+                            Text="Ongoing Session"
+                            VerticalOptions="Center" />
+
+
+                        <Border
+                            BackgroundColor="White"
+                            HeightRequest="55"
+                            Stroke="{StaticResource Primary}"
+                            StrokeThickness="10"
+                            WidthRequest="60">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="60" />
+                            </Border.StrokeShape>
+                            <Label
+                                FontFamily="StudentBlackFont"
+                                FontSize="Title"
+                                HorizontalOptions="Center"
+                                Text="2"
+                                TextColor="{StaticResource Primary}"
+                                VerticalOptions="Center" />
+                        </Border>
+
+                    </HorizontalStackLayout>
+
+
+
+                </Border>
+
+                <Button
+                    Margin="20"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="20"
+                    FontFamily="StudentBoldFont"
+                    FontSize="Title"
+                    HeightRequest="80"
+                    HorizontalOptions="Center"
+                    Text="Tap-In Now!"
+                    TextColor="White"
+                    WidthRequest="300" />
+
+                <Button
+                    Margin="20"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="20"
+                    FontFamily="StudentBoldFont"
+                    FontSize="Title"
+                    HorizontalOptions="Center"
+                    Text="View History"
+                    TextColor="White"
+                    WidthRequest="300" />
 
             </VerticalStackLayout>
         </ScrollView>
