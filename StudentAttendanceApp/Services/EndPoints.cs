@@ -10,6 +10,8 @@ namespace StudentAttendanceApp.Services
     {
         private const string baseUrl = "https://";
         public const string loginEndPoint = $"{baseUrl}/StudentattendanceApi/User/Login";
+        public const string GetUserByIdEndPoint = $"{baseUrl}/StudentattendanceApi/User/Id/";
+
 
     }
 }

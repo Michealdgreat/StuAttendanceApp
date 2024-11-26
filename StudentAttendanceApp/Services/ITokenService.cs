@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentAttendanceApp.MVVM.Models;
+using System;
 using System.Linq;
 
 namespace StudentAttendanceApp.Services
@@ -7,6 +8,7 @@ namespace StudentAttendanceApp.Services
     {
         void DeleteToken();
         Task<string?> GetTokenAsync();
+        Task<UserModel> GetUserDetailsFromToken();
         Task SaveTokenAsync(string token);
     }
 }
