@@ -51,8 +51,10 @@ namespace StudentAttendanceApp
             builder.Services.AddSingleton<IndexViewModel>();
 
 
-
             builder.Services.AddSingleton<CommonService>();
+            builder.Services.AddSingleton<ITokenService, TokenService>();
+            builder.Services.AddSingleton<GetService>();
+            builder.Services.AddSingleton<PostService>();
 
 
 

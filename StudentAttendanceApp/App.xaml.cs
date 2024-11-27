@@ -1,14 +1,17 @@
-﻿using StudentAttendanceApp.MVVM.Views;
+﻿using StudentAttendanceApp.MVVM.ViewModels;
+using StudentAttendanceApp.MVVM.Views;
 using StudentAttendanceApp.Services;
 
 namespace StudentAttendanceApp
 {
     public partial class App : Application
     {
-        public App()
+        private readonly LoginViewModel loginViewModel;
+
+        public App(LoginViewModel loginViewModel)
         {
             InitializeComponent();
-
+            this.loginViewModel = loginViewModel;
             #region FORM HELPER
             // Borderless editor
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(FormHelper), (handler, view) =>
@@ -25,13 +28,14 @@ namespace StudentAttendanceApp
 #endif
                 }
             });
+
             #endregion
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
 
-            return new Window(new NavigationPage(new HomePage()));
+            return new Window(new NavigationPage(new HomePage(loginViewModel)));
         }
 
         protected override void OnStart()

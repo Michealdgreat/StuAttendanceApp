@@ -16,6 +16,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <VerticalStackLayout>
+            <Label Text="scanned tag will show up here" />
             <Label
                 FontSize="40"
                 HorizontalOptions="Center"
@@ -23,7 +24,7 @@
                 TextColor="Purple"
                 VerticalOptions="Center" />
 
-            <Button Command="{Binding StartListeningCommand}" />
+            <Button Command="{Binding StartListeningCommand}" Text="Scan Tag" />
         </VerticalStackLayout>
 
     </ContentPage.Content>

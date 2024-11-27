@@ -17,6 +17,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         private readonly ITokenService _tokenService = tokenService;
         private readonly CommonService _commonService = commonService;
         private readonly GetService _getService = getService;
+
         [ObservableProperty]
         private string? tagId;
 
@@ -25,27 +26,39 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         {
             //var commonService = MauiProgram.ServiceProvider!.GetService<CommonService>();
 
-            var loginModel = new LoginModel
+            try
             {
-                TagId = TagId,
-            };
+                var loginModel = new LoginModel
+                {
+                    TagId = TagId,
+                };
 
-            var jwtToken = await AuthenticateUser(loginModel);
-            var userTokenDetails = await _tokenService.GetUserDetailsFromToken();
+                var jwtToken = await AuthenticateUser(loginModel);
+               
 
-            if (jwtToken != null)
-            {
-                await _tokenService.SaveTokenAsync(jwtToken);
+                if (jwtToken != null)
+                {
+                    await _tokenService.SaveTokenAsync(jwtToken);
 
-                //preloading user data
-                var user = await _getService.GetByOne<UserModel, dynamic>(userTokenDetails.UserId, EndPoints.GetUserByIdEndPoint);
+                    var userTokenDetails = await _tokenService.GetUserDetailsFromToken();
 
-                WeakReferenceMessenger.Default.Send(new UserMessage(user));
+                    //preloading user data
+                    var user = await _getService.GetByOne<UserModel, dynamic>(userTokenDetails.UserId, EndPoints.GetUserByIdEndPoint);
+
+                    WeakReferenceMessenger.Default.Send(new UserMessage(user));
 
 
-                _commonService?.InitializeAppShell();
-                await Shell.Current.GoToAsync($"///{nameof(ProfilePage)}", true);
+                    _commonService?.InitializeAppShell();
+                    await Shell.Current.GoToAsync($"///{nameof(ProfilePage)}", true);
+                }
             }
+            catch (Exception)
+            {
+
+
+            }
+
+
         }
 
 

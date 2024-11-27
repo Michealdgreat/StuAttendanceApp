@@ -18,11 +18,17 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         {
 
             WeakReferenceMessenger.Default.Register<UserMessage>(this, (r, message) => Receive(message));
+
+            //WeakReferenceMessenger.Default.Register<UserMessage>(this, (r, message) =>
+            //{
+
+            //    UserDetails = message._user;
+            //});
         }
 
         public void Receive(UserMessage message)
         {
-            UserDetails = message._user;
+            UserDetails = message.User;
         }
     }
 }

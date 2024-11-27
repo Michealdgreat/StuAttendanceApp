@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace StudentAttendanceApp.MVVM.ViewModels.Messenger;
 
-public class UserMessage(UserModel? user)
+public class UserMessage()
 {
-    public UserModel? _user = user;
+    public UserModel User { get; }
+
+    public UserMessage(UserModel user) : this()
+    {
+        User = user;
+    }
 }
