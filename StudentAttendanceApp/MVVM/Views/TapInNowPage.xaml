@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="StudentAttendanceApp.MVVM.Views.IndexPage"
+    x:Class="StudentAttendanceApp.MVVM.Views.TapInNowPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
@@ -10,16 +10,16 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
     Padding="30"
-    x:DataType="vm:IndexViewModel"
+    x:DataType="vm:TapInNowViewModel"
     BackgroundColor="{StaticResource Gray650}"
-    Shell.NavBarIsVisible="False"
     mc:Ignorable="d">
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
     </ContentPage.Behaviors>
     <ContentPage.BindingContext>
-        <vm:IndexViewModel />
+        <vm:TapInNowViewModel />
     </ContentPage.BindingContext>
+
     <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
         <StackLayout Margin="0,20,0,0" VerticalOptions="Start">
 
@@ -29,13 +29,13 @@
                 FontSize="55"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Text="Dashboard"
+                Text="Ongoing"
                 TextColor="White" />
 
             <Border
-                Margin="0"
-                BackgroundColor="{StaticResource ButtonColor4}"
-                Stroke="{StaticResource ButtonColor4}"
+                Margin="20"
+                BackgroundColor="{StaticResource Gray600}"
+                Stroke="{StaticResource Gray600}"
                 StrokeThickness="5">
 
                 <Border.StrokeShape>
@@ -51,7 +51,7 @@
                             FontSize="25"
                             HorizontalOptions="Center"
                             HorizontalTextAlignment="Start"
-                            Text="OVERVIEW"
+                            Text="Intelligent Device"
                             TextColor="White"
                             TextTransform="Uppercase" />
 
@@ -62,16 +62,16 @@
                                 <Image.Source>
                                     <FontImageSource
                                         FontFamily="StudentIconFont"
-                                        Glyph="&#xE83E;"
+                                        Glyph="&#xE893;"
                                         Size="30"
-                                        Color="{StaticResource Primary}" />
+                                        Color="{StaticResource White}" />
                                 </Image.Source>
                             </Image>
                             <Label
                                 FontFamily="StudentBoldFont"
                                 FontSize="Title"
                                 HorizontalOptions="Start"
-                                Text="   Total Courses: 3"
+                                Text="   Session 12"
                                 TextColor="White" />
                         </HorizontalStackLayout>
 
@@ -80,19 +80,18 @@
                                 <Image.Source>
                                     <FontImageSource
                                         FontFamily="StudentIconFont"
-                                        Glyph="&#xE893;"
+                                        Glyph="&#xE83E;"
                                         Size="30"
-                                        Color="{StaticResource Primary}" />
+                                        Color="{StaticResource White}" />
                                 </Image.Source>
                             </Image>
                             <Label
                                 FontFamily="StudentBoldFont"
                                 FontSize="Title"
                                 HorizontalOptions="Start"
-                                Text="   Total sessions : 12"
+                                Text="   Introduction to MQTT"
                                 TextColor="White" />
                         </HorizontalStackLayout>
-
 
                         <HorizontalStackLayout VerticalOptions="Center">
                             <Image Margin="0,0,0,0">
@@ -101,14 +100,14 @@
                                         FontFamily="StudentIconFont"
                                         Glyph="&#xE848;"
                                         Size="30"
-                                        Color="{StaticResource Primary}" />
+                                        Color="{StaticResource White}" />
                                 </Image.Source>
                             </Image>
                             <Label
                                 FontFamily="StudentBoldFont"
                                 FontSize="Title"
                                 HorizontalOptions="Start"
-                                Text="   Last Session: 2Days ago"
+                                Text="   12.10.24"
                                 TextColor="White" />
                         </HorizontalStackLayout>
 
@@ -119,14 +118,14 @@
                                         FontFamily="StudentIconFont"
                                         Glyph="&#xE84E;"
                                         Size="30"
-                                        Color="{StaticResource Primary}" />
+                                        Color="{StaticResource White}" />
                                 </Image.Source>
                             </Image>
                             <Label
                                 FontFamily="StudentBoldFont"
                                 FontSize="Title"
                                 HorizontalOptions="Start"
-                                Text="   Total Hours: 29hrs"
+                                Text="   08:00 - 12:00"
                                 TextColor="White" />
                         </HorizontalStackLayout>
 
@@ -144,12 +143,13 @@
                 <Border
                     Margin="0"
                     BackgroundColor="{StaticResource Primary}"
-                    HeightRequest="70"
+                    HeightRequest="100"
                     Stroke="{StaticResource Primary}"
-                    StrokeThickness="5">
+                    StrokeThickness="5"
+                    WidthRequest="300">
 
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="40" />
+                        <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
                     <HorizontalStackLayout
                         HorizontalOptions="Center"
@@ -159,28 +159,29 @@
                             <Image.Source>
                                 <FontImageSource
                                     FontFamily="StudentIconFont"
-                                    Glyph="&#xE83E;"
-                                    Size="32"
+                                    Glyph="&#xE80E;"
+                                    Size="40"
                                     Color="{StaticResource White}" />
                             </Image.Source>
                         </Image>
 
                         <Label
-                            FontFamily="StudentBoldFont"
-                            FontSize="32"
-                            Text="Manage Course" />
+                            FontFamily="StudentBlackFont"
+                            FontSize="52"
+                            Text="Tap-In" />
                     </HorizontalStackLayout>
                 </Border>
 
                 <Border
                     Margin="0"
-                    BackgroundColor="{StaticResource ButtonColor}"
-                    HeightRequest="70"
-                    Stroke="{StaticResource ButtonColor}"
-                    StrokeThickness="5">
+                    BackgroundColor="Sienna"
+                    HeightRequest="100"
+                    Stroke="Sienna"
+                    StrokeThickness="5"
+                    WidthRequest="300">
 
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="40" />
+                        <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
                     <HorizontalStackLayout
                         HorizontalOptions="Center"
@@ -190,56 +191,43 @@
                             <Image.Source>
                                 <FontImageSource
                                     FontFamily="StudentIconFont"
-                                    Glyph="&#xE848;"
-                                    Size="32"
+                                    Glyph="&#xE810;"
+                                    Size="40"
                                     Color="{StaticResource White}" />
                             </Image.Source>
                         </Image>
 
                         <Label
-                            FontFamily="StudentBoldFont"
-                            FontSize="32"
-                            Text="Manage Sessions" />
+                            FontFamily="StudentBlackFont"
+                            FontSize="52"
+                            Text="Leave" />
                     </HorizontalStackLayout>
                 </Border>
-
-                <Border
-                    Margin="0"
-                    BackgroundColor="{StaticResource ButtonColor2}"
-                    HeightRequest="70"
-                    Stroke="{StaticResource ButtonColor2}"
-                    StrokeThickness="5">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="40" />
-                    </Border.StrokeShape>
-                    <HorizontalStackLayout
-                        HorizontalOptions="Center"
-                        Spacing="10"
-                        VerticalOptions="Center">
-                        <Image Margin="0,0,0,0">
-                            <Image.Source>
-                                <FontImageSource
-                                    FontFamily="StudentIconFont"
-                                    Glyph="&#xE849;"
-                                    Size="32"
-                                    Color="{StaticResource White}" />
-                            </Image.Source>
-                        </Image>
-
-                        <Label
-                            FontFamily="StudentBoldFont"
-                            FontSize="32"
-                            Text="Attendance Report" />
-                    </HorizontalStackLayout>
-                </Border>
-
 
             </VerticalStackLayout>
 
+            <!--<HorizontalStackLayout
+             Margin="0,30,0,0"
+             HorizontalOptions="Center"
+             IsClippedToBounds="True"
+             Spacing="20">
+             <Button
+                 BackgroundColor="{StaticResource Primary}"
+                 FontFamily="StudentBlackFont"
+                 FontSize="32"
+                 HeightRequest="60"
+                 Text="Tap-In"
+                 TextColor="White" />
+             <Button
+                 BackgroundColor="{StaticResource Magenta}"
+                 FontFamily="StudentBlackFont"
+                 FontSize="32"
+                 HeightRequest="60"
+                 Text="Leave"
+                 TextColor="White" />
+         </HorizontalStackLayout>-->
 
         </StackLayout>
     </ScrollView>
-
 
 </ContentPage>

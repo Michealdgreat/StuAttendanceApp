@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using StudentAttendanceApp.MVVM.ViewModels;
@@ -35,12 +36,15 @@ namespace StudentAttendanceApp
                 });
 
 
+
             builder.Services.AddTransient<ProfilePage>();
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<ScanPage>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<IndexPage>();
+            builder.Services.AddTransient<TapInNowPage>();
+
 
 
             builder.Services.AddSingleton<ProfileViewModel>();
@@ -49,6 +53,8 @@ namespace StudentAttendanceApp
             builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<HomeViewModel>();
             builder.Services.AddSingleton<IndexViewModel>();
+            builder.Services.AddSingleton<TapInNowViewModel>();
+
 
 
             builder.Services.AddSingleton<CommonService>();

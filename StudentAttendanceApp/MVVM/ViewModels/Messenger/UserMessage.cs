@@ -1,4 +1,5 @@
-﻿using StudentAttendanceApp.MVVM.Models;
+﻿using CommunityToolkit.Mvvm.Messaging.Messages;
+using StudentAttendanceApp.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,9 @@ using System.Threading.Tasks;
 
 namespace StudentAttendanceApp.MVVM.ViewModels.Messenger;
 
-public class UserMessage()
+public class UserMessage : ValueChangedMessage<UserModel>
 {
-    public UserModel User { get; }
-
-    public UserMessage(UserModel user) : this()
+    public UserMessage(UserModel value) : base(value)
     {
-        User = user;
     }
 }

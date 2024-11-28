@@ -78,14 +78,30 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
-                    <FieldEntry:FormHelper
-                        Margin="10,0,0,-8"
-                        FontFamily="StudentSemiBoldFont"
-                        FontSize="25"
-                        HeightRequest="80"
-                        IsPassword="True"
-                        Placeholder="Enter your ID here"
-                        Text="{Binding TagId}" />
+                    <Grid>
+                        <FieldEntry:FormHelper
+                            Margin="20,0,0,0"
+                            FontFamily="StudentSemiBoldFont"
+                            FontSize="30"
+                            HeightRequest="80"
+                            IsPassword="{Binding IsPasswordVisible}"
+                            Placeholder="Enter your ID here"
+                            Text="{Binding TagId}" />
+
+                        <Image Margin="0,0,20,0" HorizontalOptions="End">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding viewTagidCommand}" />
+                            </Image.GestureRecognizers>
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="StudentIconFont"
+                                    Glyph="&#xE81B;"
+                                    Size="40"
+                                    Color="{StaticResource White}" />
+                            </Image.Source>
+                        </Image>
+                    </Grid>
+
                 </Border>
 
                 <Button

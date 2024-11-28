@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Messaging.Messages;
 using StudentAttendanceApp.MVVM.Models;
 using StudentAttendanceApp.MVVM.ViewModels.Base;
 using StudentAttendanceApp.MVVM.ViewModels.Messenger;
@@ -21,6 +22,23 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         [ObservableProperty]
         private string? tagId;
 
+        [ObservableProperty]
+        private bool isPasswordVisible = true;
+
+        [RelayCommand]
+        public void viewTagid()
+        {
+            if (IsPasswordVisible == false)
+            {
+                IsPasswordVisible = true;
+            }
+            else
+            {
+                IsPasswordVisible = false;
+            }
+        }
+
+
         [RelayCommand]
         public async Task LoginButton()
         {
@@ -34,7 +52,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                 };
 
                 var jwtToken = await AuthenticateUser(loginModel);
-               
+
 
                 if (jwtToken != null)
                 {
@@ -45,11 +63,13 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                     //preloading user data
                     var user = await _getService.GetByOne<UserModel, dynamic>(userTokenDetails.UserId, EndPoints.GetUserByIdEndPoint);
 
-                    WeakReferenceMessenger.Default.Send(new UserMessage(user));
-
-
                     _commonService?.InitializeAppShell();
-                    await Shell.Current.GoToAsync($"///{nameof(ProfilePage)}", true);
+                    await Shell.Current.GoToAsync($"///{nameof(ProfilePage)}", true, new Dictionary<string, object>
+        {
+                        { "UserDetails", user }
+                    });
+                    //WeakReferenceMessenger.Default.Send(new ValueChangedMessage<UserModel>(user));
+
                 }
             }
             catch (Exception)

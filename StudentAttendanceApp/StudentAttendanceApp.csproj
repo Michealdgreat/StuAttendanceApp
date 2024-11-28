@@ -80,7 +80,7 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="MVVM\Views\IndexPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="MVVM\Views\LoginPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -93,6 +93,9 @@
 		</MauiXaml>
 		<MauiXaml Update="MVVM\Views\ScanPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\TapInNowPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 	</ItemGroup>
 

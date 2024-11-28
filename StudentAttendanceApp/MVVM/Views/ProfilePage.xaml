@@ -12,9 +12,6 @@
     BackgroundColor="{StaticResource Gray650}"
     Shell.BackgroundColor="{StaticResource Primary}"
     mc:Ignorable="d">
-    <ContentPage.BindingContext>
-        <vm:ProfileViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Margin="50">
