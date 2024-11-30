@@ -18,9 +18,7 @@
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
     </ContentPage.Behaviors>
-    <ContentPage.BindingContext>
-        <vm:RegisterViewModel />
-    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
             <StackLayout>
@@ -163,6 +161,7 @@
                     BackgroundColor="{StaticResource Primary}"
                     FontFamily="StudentBlackFont"
                     FontSize="22"
+                    Command="{Binding RegisterButtonCommand}"
                     HeightRequest="50"
                     Text="Continue"
                     TextColor="White"

@@ -1,10 +1,13 @@
-﻿namespace StudentAttendanceApp.MVVM.Views
+﻿using StudentAttendanceApp.MVVM.ViewModels;
+
+namespace StudentAttendanceApp.MVVM.Views
 {
     public partial class RegisterPage : ContentPage
     {
-        public RegisterPage()
+        public RegisterPage(RegisterViewModel registerViewModel)
         {
             InitializeComponent();
+            BindingContext = registerViewModel;
         }
     }
 }

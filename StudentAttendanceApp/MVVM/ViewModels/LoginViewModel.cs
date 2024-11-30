@@ -60,9 +60,10 @@ namespace StudentAttendanceApp.MVVM.ViewModels
 
                     var userTokenDetails = await _tokenService.GetUserDetailsFromToken();
 
-                    //preloading user data
+                    //loading user data for profile view
                     var user = await _getService.GetByOne<UserModel, dynamic>(userTokenDetails.UserId, EndPoints.GetUserByIdEndPoint);
 
+                    TagId = string.Empty;
                     _commonService?.InitializeAppShell();
                     await Shell.Current.GoToAsync($"///{nameof(ProfilePage)}", true, new Dictionary<string, object>
         {

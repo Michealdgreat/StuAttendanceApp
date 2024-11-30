@@ -33,5 +33,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             await Shell.Current.GoToAsync(nameof(ScanPage), true);
         }
 
+
+
     }
 }

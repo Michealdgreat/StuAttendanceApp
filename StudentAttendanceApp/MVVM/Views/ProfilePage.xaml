@@ -111,9 +111,9 @@
                 </Border>
 
                 <Button
-                    Command="{Binding TapInNowCommand}"
                     Margin="20"
                     BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding TapInNowCommand}"
                     CornerRadius="20"
                     FontFamily="StudentBoldFont"
                     FontSize="Title"
@@ -133,6 +133,19 @@
                     Text="View History"
                     TextColor="White"
                     WidthRequest="300" />
+
+                <Button
+                    Margin="20"
+                    Padding="5"
+                    BackgroundColor="#96a64178"
+                    Clicked="Button_Clicked"
+                    CornerRadius="10"
+                    FontFamily="StudentBoldFont"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="Log out!"
+                    TextColor="White"
+                    WidthRequest="150" />
 
             </VerticalStackLayout>
         </ScrollView>
