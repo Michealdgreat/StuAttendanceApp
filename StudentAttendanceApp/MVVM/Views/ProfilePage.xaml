@@ -111,6 +111,7 @@
                 </Border>
 
                 <Button
+                    Command="{Binding TapInNowCommand}"
                     Margin="20"
                     BackgroundColor="{StaticResource Primary}"
                     CornerRadius="20"

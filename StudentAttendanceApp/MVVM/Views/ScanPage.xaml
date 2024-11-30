@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    Padding="30"
     x:DataType="vm:ScanViewModel"
     BackgroundColor="#1C1C1C"
     Shell.BackgroundColor="#1C1C1C"
@@ -16,15 +17,27 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <VerticalStackLayout>
-            <Label Text="scanned tag will show up here" />
+            <Label
+                FontFamily="StudentBoldFont"
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                Text=" Place your tag behind the phone" />
             <Label
                 FontSize="40"
                 HorizontalOptions="Center"
                 Text="{Binding RfidTag}"
-                TextColor="Purple"
+                TextColor="{StaticResource Primary}"
                 VerticalOptions="Center" />
+            <BoxView HeightRequest="1" />
 
-            <Button Command="{Binding StartListeningCommand}" Text="Scan Tag" />
+            <Button
+                Margin="20"
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding StartListeningCommand}"
+                FontSize="Title"
+                HeightRequest="50"
+                Text="Scan Tag"
+                TextColor="White" />
         </VerticalStackLayout>
 
     </ContentPage.Content>

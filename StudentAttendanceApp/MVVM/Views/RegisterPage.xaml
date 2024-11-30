@@ -58,7 +58,8 @@
                                 FontFamily="StudentSemiBoldFont"
                                 FontSize="17"
                                 HeightRequest="50"
-                                Placeholder="First Name" />
+                                Placeholder="First Name"
+                                Text="{Binding FirstName}" />
                         </Border>
 
                         <Border
@@ -75,7 +76,8 @@
                                 FontFamily="StudentSemiBoldFont"
                                 FontSize="17"
                                 HeightRequest="50"
-                                Placeholder="Last Name" />
+                                Placeholder="Last Name"
+                                Text="{Binding LastName}" />
                         </Border>
 
                     </Grid>
@@ -93,12 +95,20 @@
                             FontFamily="StudentSemiBoldFont"
                             FontSize="17"
                             HeightRequest="50"
-                            Placeholder="Email" />
+                            Placeholder="Email"
+                            Text="{Binding Email}" />
                     </Border>
+
+
+                    <Picker
+                        Title="Choose a role"
+                        ItemsSource="{Binding UserRoles}"
+                        SelectedItem="{Binding SelectedRole, Mode=TwoWay}" />
 
                     <Border
                         Margin="5"
                         BackgroundColor="#404040"
+                        IsVisible="{Binding GroupFieldVisibility}"
                         Stroke="#404040">
 
                         <Border.StrokeShape>
@@ -109,7 +119,26 @@
                             FontFamily="StudentSemiBoldFont"
                             FontSize="17"
                             HeightRequest="50"
-                            Placeholder="Group" />
+                            Placeholder="Group"
+                            Text="{Binding Group}" />
+                    </Border>
+
+                    <Border
+                        Margin="5"
+                        BackgroundColor="#404040"
+                        IsVisible="{Binding DepartmentFieldVisibility}"
+                        Stroke="#404040">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <FieldEntry:FormHelper
+                            Margin="10,0,0,0"
+                            FontFamily="StudentSemiBoldFont"
+                            FontSize="17"
+                            HeightRequest="50"
+                            Placeholder="Department"
+                            Text="{Binding Department}" />
                     </Border>
 
                     <Border
@@ -125,7 +154,8 @@
                             FontFamily="StudentSemiBoldFont"
                             FontSize="17"
                             HeightRequest="50"
-                            Placeholder="Tag Id" />
+                            Placeholder="Tag Id"
+                            Text="{Binding TagId}" />
                     </Border>
                 </VerticalStackLayout>
 
