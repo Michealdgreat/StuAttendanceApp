@@ -45,8 +45,6 @@ namespace StudentAttendanceApp
             builder.Services.AddTransient<IndexPage>();
             builder.Services.AddTransient<TapInNowPage>();
 
-
-
             builder.Services.AddSingleton<ProfileViewModel>();
             builder.Services.AddSingleton<RegisterViewModel>();
             builder.Services.AddSingleton<ScanViewModel>();
@@ -56,11 +54,12 @@ namespace StudentAttendanceApp
             builder.Services.AddSingleton<TapInNowViewModel>();
 
 
-
             builder.Services.AddSingleton<CommonService>();
             builder.Services.AddSingleton<ITokenService, TokenService>();
             builder.Services.AddSingleton<GetService>();
             builder.Services.AddSingleton<PostService>();
+
+            builder.Services.AddHttpClient<PostService>();
 
 
 

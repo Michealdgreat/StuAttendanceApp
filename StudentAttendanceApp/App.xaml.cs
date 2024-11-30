@@ -7,11 +7,13 @@ namespace StudentAttendanceApp
     public partial class App : Application
     {
         private readonly LoginViewModel loginViewModel;
+        private readonly RegisterViewModel _registerViewModel;
 
-        public App(LoginViewModel loginViewModel)
+        public App(LoginViewModel loginViewModel, RegisterViewModel registerViewModel)
         {
             InitializeComponent();
             this.loginViewModel = loginViewModel;
+            _registerViewModel = registerViewModel;
             #region FORM HELPER
             // Borderless editor
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(FormHelper), (handler, view) =>
@@ -35,7 +37,7 @@ namespace StudentAttendanceApp
         protected override Window CreateWindow(IActivationState? activationState)
         {
 
-            return new Window(new NavigationPage(new HomePage(loginViewModel)));
+            return new Window(new NavigationPage(new HomePage(loginViewModel, _registerViewModel)));
         }
 
         //protected override void OnStart()
