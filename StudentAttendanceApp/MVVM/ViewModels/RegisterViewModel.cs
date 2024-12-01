@@ -38,6 +38,12 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         private bool groupFieldVisibility = false;
 
         [ObservableProperty]
+        private bool loadingIndicator = false;
+
+        [ObservableProperty]
+        private bool registerButtonVisibility = true;
+
+        [ObservableProperty]
         private bool departmentFieldVisibility = false;
 
         public ObservableCollection<String> UserRoles { get; set; }
@@ -88,6 +94,9 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         [RelayCommand]
         private async Task RegisterButton()
         {
+            LoadingIndicator = true;
+            RegisterButtonVisibility = false;
+
             var registerModel = new RegisterModel
             {
                 FirstName = FirstName,
@@ -122,6 +131,9 @@ namespace StudentAttendanceApp.MVVM.ViewModels
 
                         var mainPage = Application.Current!.Windows[0].Page;
                         await mainPage.DisplayAlert("Required", " fields required", "OK");
+                        LoadingIndicator = false;
+                        RegisterButtonVisibility = true;
+                        TagId = null;
                     }
 
                     if (responseObject.Status == 200)
@@ -134,6 +146,8 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                         UserRole = 0;
                         Group = null;
                         Department = null;
+                        LoadingIndicator = false;
+                        RegisterButtonVisibility = true;
 
                         var mainPage = Application.Current!.Windows[0].Page;
                         await mainPage.DisplayAlert("SUCCESS", "Account created successfully, you can login now!", "OK");
@@ -149,14 +163,18 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                 }
                 else
                 {
-
+                    LoadingIndicator = false;
+                    RegisterButtonVisibility = true;
+                    TagId = null;
                     var mainPage = Application.Current!.Windows[0].Page;
                     await mainPage.DisplayAlert("Error", "Something went wrong while processing your request", " Please try again.");
                 }
             }
             catch (Exception)
             {
-
+                LoadingIndicator = false;
+                RegisterButtonVisibility = true;
+                TagId = null;
                 var mainPage = Application.Current!.Windows[0].Page;
                 await mainPage.DisplayAlert("Error", "Something went wrong while processing your request", " Please try again.");
             }

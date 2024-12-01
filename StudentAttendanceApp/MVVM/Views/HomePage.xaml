@@ -23,69 +23,92 @@
         <vm:HomeViewModel />
     </ContentPage.BindingContext>
 
-    <ScrollView
-        HorizontalScrollBarVisibility="Never"
-        VerticalScrollBarVisibility="Never">
+    <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+
         <VerticalStackLayout>
-            <Label
-                Margin="0,20,0,30"
-                FontFamily="StudentMediumFont"
-                FontSize="30"
+
+            <Grid
                 HorizontalOptions="Center"
-                Text="Welcome" />
-            <VerticalStackLayout>
-                <HorizontalStackLayout Margin="0,0,0,50" HorizontalOptions="Center">
-                    <Image
-                        Margin="0,0,10,0"
-                        HeightRequest="70"
-                        Source="click_icon" />
-                    <Label
-                        FontFamily="StudentBlackFont"
-                        FontSize="70"
-                        HorizontalOptions="Center"
-                        Text="Tap-In"
-                        TextColor="White"
-                        VerticalOptions="Center" />
-                </HorizontalStackLayout>
+                IsVisible="{Binding LoadingIndicator}"
+                VerticalOptions="Center">
                 <skia:SKLottieView
-                    Margin="0,60,0,30"
                     Background="{StaticResource Gray650}"
-                    HeightRequest="200"
-                    Opacity=".8"
+                    HeightRequest="40"
                     RepeatCount="-1"
                     RepeatMode="Restart"
-                    Scale="2"
-                    Source="welcomeanimation.json" />
+                    Scale="1"
+                    Source="loadingindicator.json" />
+            </Grid>
+
+
+            <VerticalStackLayout IsVisible="{Binding HomePageContentVisibility}">
+                <Label
+                    Margin="0,20,0,30"
+                    FontFamily="StudentMediumFont"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="Welcome" />
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Margin="0,0,0,50" HorizontalOptions="Center">
+                        <Image
+                            Margin="0,0,10,0"
+                            HeightRequest="70"
+                            Source="click_icon" />
+                        <Label
+                            FontFamily="StudentBlackFont"
+                            FontSize="70"
+                            HorizontalOptions="Center"
+                            Text="Tap-In"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <skia:SKLottieView
+                        Margin="0,60,0,30"
+                        Background="{StaticResource Gray650}"
+                        HeightRequest="200"
+                        Opacity=".8"
+                        RepeatCount="-1"
+                        RepeatMode="Restart"
+                        Scale="2"
+                        Source="welcomeanimation.json" />
+
+
+                </VerticalStackLayout>
+
+
+                <VerticalStackLayout Margin="0,80,0,0" Spacing="20">
+
+                    <Button
+                        BackgroundColor="{StaticResource Primary}"
+                        Clicked="Login_Button_Clicked"
+                        FontFamily="StudentBlackFont"
+                        FontSize="22"
+                        HeightRequest="50"
+                        Text="Login"
+                        TextColor="White"
+                        WidthRequest="300" />
+                    <Button
+                        BackgroundColor="{StaticResource Primary}"
+                        Clicked="Register_Button_Clicked"
+                        FontFamily="StudentBlackFont"
+                        FontSize="22"
+                        HeightRequest="50"
+                        Text="Register"
+                        TextColor="White"
+                        WidthRequest="300" />
+                </VerticalStackLayout>
+
 
 
             </VerticalStackLayout>
-
-
-            <VerticalStackLayout Margin="0,80,0,0" Spacing="20">
-
-                <Button
-                    BackgroundColor="{StaticResource Primary}"
-                    Clicked="Login_Button_Clicked"
-                    FontFamily="StudentBlackFont"
-                    FontSize="22"
-                    HeightRequest="50"
-                    Text="Login"
-                    TextColor="White"
-                    WidthRequest="300" />
-                <Button
-                    BackgroundColor="{StaticResource Primary}"
-                    Clicked="Register_Button_Clicked"
-                    FontFamily="StudentBlackFont"
-                    FontSize="22"
-                    HeightRequest="50"
-                    Text="Register"
-                    TextColor="White"
-                    WidthRequest="300" />
-            </VerticalStackLayout>
-
 
 
         </VerticalStackLayout>
+
+
+
+
+
     </ScrollView>
 
 

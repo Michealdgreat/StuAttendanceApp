@@ -9,7 +9,11 @@ namespace StudentAttendanceApp.MVVM.ViewModels
     public partial class HomeViewModel : BaseViewModel
     {
 
+        [ObservableProperty]
+        public bool homePageContentVisibility = true;
 
+        [ObservableProperty]
+        public bool loadingIndicator = false;
 
         //[RelayCommand]
         //public async Task LoginYourAccount()

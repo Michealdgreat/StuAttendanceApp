@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
     xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
     Title="Register"
@@ -157,12 +158,22 @@
                     </Border>
                 </VerticalStackLayout>
 
+                <skia:SKLottieView
+                    Background="{StaticResource Gray650}"
+                    HeightRequest="40"
+                    IsVisible="{Binding LoadingIndicator}"
+                    RepeatCount="-1"
+                    RepeatMode="Restart"
+                    Scale="1"
+                    Source="loadingindicator.json" />
+
                 <Button
                     BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding RegisterButtonCommand}"
                     FontFamily="StudentBlackFont"
                     FontSize="22"
-                    Command="{Binding RegisterButtonCommand}"
                     HeightRequest="50"
+                    IsVisible="{Binding RegisterButtonVisibility}"
                     Text="Continue"
                     TextColor="White"
                     WidthRequest="300" />

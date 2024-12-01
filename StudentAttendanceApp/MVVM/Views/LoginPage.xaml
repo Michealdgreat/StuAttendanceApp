@@ -85,7 +85,7 @@
                             FontSize="30"
                             HeightRequest="80"
                             IsPassword="{Binding IsPasswordVisible}"
-                            Placeholder="Enter your ID here"
+                            Placeholder="Enter your ID No."
                             Text="{Binding TagId}" />
 
                         <Image Margin="0,0,20,0" HorizontalOptions="End">
@@ -104,12 +104,22 @@
 
                 </Border>
 
+                <skia:SKLottieView
+                    Background="{StaticResource Gray650}"
+                    HeightRequest="40"
+                    IsVisible="{Binding LoadingIndicator}"
+                    RepeatCount="-1"
+                    RepeatMode="Restart"
+                    Scale="1"
+                    Source="loadingindicator.json" />
+
                 <Button
                     BackgroundColor="{StaticResource Primary}"
                     Command="{Binding LoginButtonCommand}"
                     FontFamily="StudentBlackFont"
                     FontSize="22"
                     HeightRequest="50"
+                    IsVisible="{Binding LoginButtonVisibility}"
                     Text="Continue"
                     TextColor="White"
                     WidthRequest="300" />

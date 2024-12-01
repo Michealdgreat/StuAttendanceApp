@@ -25,6 +25,12 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         [ObservableProperty]
         private bool isPasswordVisible = true;
 
+        [ObservableProperty]
+        private bool loadingIndicator = false;
+
+        [ObservableProperty]
+        private bool loginButtonVisibility = true;
+
         [RelayCommand]
         public void viewTagid()
         {
@@ -43,6 +49,9 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         public async Task LoginButton()
         {
             //var commonService = MauiProgram.ServiceProvider!.GetService<CommonService>();
+
+            LoadingIndicator = true;
+            LoginButtonVisibility = false;
 
             try
             {
@@ -64,6 +73,9 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                     var user = await _getService.GetByOne<UserModel, dynamic>(userTokenDetails.UserId, EndPoints.GetUserByIdEndPoint);
 
                     TagId = string.Empty;
+                    LoadingIndicator = false;
+                    LoginButtonVisibility = true;
+
                     _commonService?.InitializeAppShell();
                     await Shell.Current.GoToAsync($"///{nameof(ProfilePage)}", true, new Dictionary<string, object>
         {
@@ -75,7 +87,8 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             }
             catch (Exception)
             {
-
+                LoadingIndicator = false;
+                LoginButtonVisibility = true;
 
             }
 
