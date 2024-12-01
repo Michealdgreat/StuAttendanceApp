@@ -12,6 +12,7 @@ namespace StudentAttendanceApp
             Routing.RegisterRoute(nameof(ScanPage), typeof(ScanPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+            Routing.RegisterRoute(nameof(StartUpPage), typeof(StartUpPage));
 
 
         }

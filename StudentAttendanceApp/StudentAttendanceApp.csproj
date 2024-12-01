@@ -94,6 +94,9 @@
 		<MauiXaml Update="MVVM\Views\ScanPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\StartUpPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="MVVM\Views\TapInNowPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
