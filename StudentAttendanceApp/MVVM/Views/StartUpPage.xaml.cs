@@ -27,7 +27,6 @@ namespace StudentAttendanceApp.MVVM.Views
             _getService = getService;
             _homeViewModel = homeViewModel;
 
-
         }
 
         private async void ContentPage_Loaded(object sender, EventArgs e)
@@ -36,7 +35,7 @@ namespace StudentAttendanceApp.MVVM.Views
 
             try
             {
-                if (userToken != null)
+                if (userToken != string.Empty)
                 {
                     var userTokenDetails = await _tokenService.GetUserDetailsFromToken();
 
@@ -56,10 +55,13 @@ namespace StudentAttendanceApp.MVVM.Views
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 _homeViewModel.LoadingIndicator = false;
                 _homeViewModel.HomePageContentVisibility = true;
+
+                var mainPage = Application.Current!.Windows[0];
+                mainPage.Page = new NavigationPage(new HomePage(_loginViewModel, _registerViewModel));
             }
         }
     }

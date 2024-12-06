@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using StudentAttendanceApp.MVVM.ViewModels;
@@ -37,27 +38,28 @@ namespace StudentAttendanceApp
 
 
 
-            builder.Services.AddTransient<ProfilePage>();
-            builder.Services.AddTransient<RegisterPage>();
-            builder.Services.AddTransient<ScanPage>();
-            builder.Services.AddTransient<LoginPage>();
-            builder.Services.AddTransient<HomePage>();
-            builder.Services.AddTransient<IndexPage>();
-            builder.Services.AddTransient<TapInNowPage>();
+            builder.Services.AddSingleton<ProfilePage>();
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<ScanPage>();
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<HomePage>();
+            builder.Services.AddSingleton<IndexPage>();
+            builder.Services.AddSingleton<TapInNowPage>();
 
-            builder.Services.AddSingleton<ProfileViewModel>();
-            builder.Services.AddSingleton<RegisterViewModel>();
-            builder.Services.AddSingleton<ScanViewModel>();
-            builder.Services.AddSingleton<LoginViewModel>();
-            builder.Services.AddSingleton<HomeViewModel>();
-            builder.Services.AddSingleton<IndexViewModel>();
-            builder.Services.AddSingleton<TapInNowViewModel>();
+            builder.Services.AddTransient<ProfileViewModel>();
+            builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<ScanViewModel>();
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<HomeViewModel>();
+            builder.Services.AddTransient<IndexViewModel>();
+            builder.Services.AddTransient<TapInNowViewModel>();
 
 
             builder.Services.AddSingleton<CommonService>();
             builder.Services.AddSingleton<ITokenService, TokenService>();
             builder.Services.AddSingleton<GetService>();
             builder.Services.AddSingleton<PostService>();
+            //builder.Services.AddSingleton<HubConnection>();
 
             builder.Services.AddHttpClient<PostService>();
 

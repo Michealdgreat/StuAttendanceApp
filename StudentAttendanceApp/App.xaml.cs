@@ -53,7 +53,6 @@ namespace StudentAttendanceApp
         //{
         //}
 
-
         //protected override void OnSleep()
         //{
         //}

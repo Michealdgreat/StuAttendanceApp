@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Messaging.Messages;
+using Microsoft.AspNetCore.SignalR.Client;
 using StudentAttendanceApp.MVVM.Models;
 using StudentAttendanceApp.MVVM.ViewModels.Base;
 using StudentAttendanceApp.MVVM.ViewModels.Messenger;
@@ -13,11 +14,13 @@ using System.Text.Json;
 
 namespace StudentAttendanceApp.MVVM.ViewModels
 {
-    public partial class LoginViewModel(ITokenService tokenService, CommonService commonService, GetService getService) : BaseViewModel
+    public partial class LoginViewModel : BaseViewModel
     {
-        private readonly ITokenService _tokenService = tokenService;
-        private readonly CommonService _commonService = commonService;
-        private readonly GetService _getService = getService;
+        private readonly ITokenService _tokenService;
+        private readonly CommonService _commonService;
+        private readonly GetService _getService;
+        private HubConnection _hubConnection;
+
 
         [ObservableProperty]
         private string? tagId;
@@ -30,6 +33,14 @@ namespace StudentAttendanceApp.MVVM.ViewModels
 
         [ObservableProperty]
         private bool loginButtonVisibility = true;
+
+        public LoginViewModel(ITokenService tokenService, CommonService commonService, GetService getService)
+        {
+            _tokenService = tokenService;
+            _commonService = commonService;
+            _getService = getService;
+            InitializeSignalR();
+        }
 
         [RelayCommand]
         public void viewTagid()
@@ -44,6 +55,19 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             }
         }
 
+        private async void InitializeSignalR()
+        {
+            _hubConnection = new HubConnectionBuilder()
+                .WithUrl(EndPoints.loginHubEndPoint)
+                .Build();
+
+            _hubConnection.On<string>("ReceiveTagId", (tagId) =>
+            {
+                TagId = tagId;
+            });
+
+            await _hubConnection.StartAsync();
+        }
 
         [RelayCommand]
         public async Task LoginButton()
