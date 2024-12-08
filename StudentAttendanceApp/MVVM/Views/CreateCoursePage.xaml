@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="StudentAttendanceApp.MVVM.Views.CreateCoursePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:FieldEntry="clr-namespace:StudentAttendanceApp.Services"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    Title="Create Course"
+    Padding="20"
+    x:DataType="vm:CreateCourseViewModel"
+    HideSoftInputOnTapped="True"
+    mc:Ignorable="d">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <StackLayout
+            Margin="20"
+            Padding="20"
+            Spacing="15">
+            <Label
+                FontFamily="StudentBlackFont"
+                FontSize="40"
+                HorizontalOptions="Center"
+                Text="Create Course"
+                TextColor="White"
+                VerticalOptions="Start" />
+
+            <FieldEntry:FormHelper
+                FontSize="20"
+                Placeholder="Course Name"
+                Text="{Binding CourseName}" />
+
+            <Button
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding CreateCourseCommand}"
+                FontFamily="StudentBlackFont"
+                FontSize="22"
+                HeightRequest="50"
+                Text="Create Course"
+                TextColor="White" />
+
+
+            <ActivityIndicator
+                HeightRequest="50"
+                IsRunning="{Binding IsLoading}"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Label
+                IsVisible="{Binding IsMessageVisible}"
+                Text="{Binding Message}"
+                TextColor="Red" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -8,6 +8,6 @@ namespace StudentAttendanceApp.MVVM.Models
 {
     public class LoginModel
     {
-        public string? TagId { get; set; }
+        public string? tagId { get; set; }
     }
 }

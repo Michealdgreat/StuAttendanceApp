@@ -34,8 +34,8 @@
 
             <Border
                 Margin="0"
-                BackgroundColor="{StaticResource ButtonColor4}"
-                Stroke="{StaticResource ButtonColor4}"
+                BackgroundColor="{StaticResource Gray600}"
+                Stroke="{StaticResource Gray600}"
                 StrokeThickness="5">
 
                 <Border.StrokeShape>
@@ -143,100 +143,153 @@
 
                 <Border
                     Margin="0"
-                    BackgroundColor="{StaticResource Primary}"
+                    BackgroundColor="{StaticResource Gray600}"
                     HeightRequest="70"
-                    Stroke="{StaticResource Primary}"
-                    StrokeThickness="5">
+                    Stroke="{StaticResource Gray600}"
+                    StrokeThickness="1">
 
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="40" />
+                        <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
-                    <HorizontalStackLayout
-                        HorizontalOptions="Center"
-                        Spacing="10"
-                        VerticalOptions="Center">
-                        <Image Margin="0,0,0,0">
+                    <Grid Margin="20,0,0,0" VerticalOptions="Center">
+                        <HorizontalStackLayout Spacing="15">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="StudentIconFont"
+                                        Glyph="&#xE83E;"
+                                        Size="32"
+                                        Color="{StaticResource Primary}" />
+                                </Image.Source>
+                            </Image>
+
+                            <Label
+                                FontFamily="StudentBoldFont"
+                                FontSize="32"
+                                Text="Manage Course" />
+                        </HorizontalStackLayout>
+
+
+                        <Image Margin="0,0,20,0" HorizontalOptions="End">
                             <Image.Source>
                                 <FontImageSource
                                     FontFamily="StudentIconFont"
-                                    Glyph="&#xE83E;"
+                                    Glyph="&#xE867;"
                                     Size="32"
                                     Color="{StaticResource White}" />
                             </Image.Source>
                         </Image>
-
-                        <Label
-                            FontFamily="StudentBoldFont"
-                            FontSize="32"
-                            Text="Manage Course" />
-                    </HorizontalStackLayout>
+                    </Grid>
                 </Border>
 
                 <Border
                     Margin="0"
-                    BackgroundColor="{StaticResource ButtonColor}"
+                    BackgroundColor="{StaticResource Gray600}"
                     HeightRequest="70"
-                    Stroke="{StaticResource ButtonColor}"
-                    StrokeThickness="5">
+                    Stroke="{StaticResource Gray600}"
+                    StrokeThickness="1">
 
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="40" />
+                        <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
-                    <HorizontalStackLayout
-                        HorizontalOptions="Center"
-                        Spacing="10"
-                        VerticalOptions="Center">
-                        <Image Margin="0,0,0,0">
+                    <Grid Margin="20,0,0,0" VerticalOptions="Center">
+                        <HorizontalStackLayout Spacing="15">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="StudentIconFont"
+                                        Glyph="&#xE848;"
+                                        Size="32"
+                                        Color="{StaticResource Primary}" />
+                                </Image.Source>
+                            </Image>
+
+                            <Label
+                                FontFamily="StudentBoldFont"
+                                FontSize="32"
+                                Text="Manage Sessions" />
+                        </HorizontalStackLayout>
+
+
+                        <Image Margin="0,0,20,0" HorizontalOptions="End">
                             <Image.Source>
                                 <FontImageSource
                                     FontFamily="StudentIconFont"
-                                    Glyph="&#xE848;"
+                                    Glyph="&#xE867;"
                                     Size="32"
                                     Color="{StaticResource White}" />
                             </Image.Source>
                         </Image>
-
-                        <Label
-                            FontFamily="StudentBoldFont"
-                            FontSize="32"
-                            Text="Manage Sessions" />
-                    </HorizontalStackLayout>
+                    </Grid>
                 </Border>
 
                 <Border
                     Margin="0"
-                    BackgroundColor="{StaticResource ButtonColor2}"
+                    BackgroundColor="{StaticResource Gray600}"
                     HeightRequest="70"
-                    Stroke="{StaticResource ButtonColor2}"
-                    StrokeThickness="5">
+                    Stroke="{StaticResource Gray600}"
+                    StrokeThickness="1">
 
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="40" />
+                        <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
-                    <HorizontalStackLayout
-                        HorizontalOptions="Center"
-                        Spacing="10"
-                        VerticalOptions="Center">
-                        <Image Margin="0,0,0,0">
+                    <Grid Margin="20,0,0,0" VerticalOptions="Center">
+                        <HorizontalStackLayout Spacing="15">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="StudentIconFont"
+                                        Glyph="&#xE849;"
+                                        Size="32"
+                                        Color="{StaticResource Primary}" />
+                                </Image.Source>
+                            </Image>
+
+                            <Label
+                                FontFamily="StudentBoldFont"
+                                FontSize="32"
+                                Text="Attendance Report" />
+                        </HorizontalStackLayout>
+
+
+                        <Image Margin="0,0,20,0" HorizontalOptions="End">
                             <Image.Source>
                                 <FontImageSource
                                     FontFamily="StudentIconFont"
-                                    Glyph="&#xE849;"
+                                    Glyph="&#xE867;"
                                     Size="32"
                                     Color="{StaticResource White}" />
                             </Image.Source>
                         </Image>
-
-                        <Label
-                            FontFamily="StudentBoldFont"
-                            FontSize="32"
-                            Text="Attendance Report" />
-                    </HorizontalStackLayout>
+                    </Grid>
                 </Border>
+
+
 
 
             </VerticalStackLayout>
 
+            <HorizontalStackLayout
+                Margin="0,40,0,0"
+                HeightRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                Spacing="10">
+                <Button
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding CreateCourseCommand}"
+                    FontFamily="StudentSemiBoldFont"
+                    FontSize="17"
+                    Text="Create course"
+                    TextColor="White" />
+                <Button
+                    BackgroundColor="{StaticResource ButtonColor2}"
+                    Command="{Binding CreateSessionCommand}"
+                    FontFamily="StudentSemiBoldFont"
+                    FontSize="17"
+                    Text="Create Session"
+                    TextColor="White" />
+
+            </HorizontalStackLayout>
 
         </StackLayout>
     </ScrollView>

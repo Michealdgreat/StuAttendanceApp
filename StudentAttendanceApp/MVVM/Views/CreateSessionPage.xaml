@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="StudentAttendanceApp.MVVM.Views.CreateSessionPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    Title="Create Session"
+    Padding="20"
+    x:DataType="vm:CreateSessionViewModel"
+    HideSoftInputOnTapped="True"
+    mc:Ignorable="d">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="15">
+            <Label
+                FontFamily="StudentBlackFont"
+                FontSize="34"
+                HorizontalOptions="Center"
+                Text="Create Session"
+                TextColor="White"
+                VerticalOptions="Start" />
+
+            <Entry
+                FontFamily="StudentSemiBoldFont"
+                FontSize="17"
+                Placeholder="Session Name"
+                Text="{Binding Name}" />
+
+            <DatePicker
+                Date="{Binding Date}"
+                FontFamily="StudentSemiBoldFont"
+                FontSize="17" />
+
+            <TimePicker
+                FontFamily="StudentSemiBoldFont"
+                FontSize="17"
+                Time="{Binding StartAt}" />
+
+            <TimePicker
+                FontFamily="StudentSemiBoldFont"
+                FontSize="17"
+                Time="{Binding EndAt}" />
+
+            <Button
+                BackgroundColor="{StaticResource ButtonColor2}"
+                Command="{Binding CreateSessionCommand}"
+                FontFamily="StudentBlackFont"
+                FontSize="22"
+                Text="Create Session"
+                TextColor="White" />
+
+
+            <ActivityIndicator
+                HeightRequest="50"
+                IsRunning="{Binding IsLoading}"
+                IsVisible="{Binding IsLoading}"
+                VerticalOptions="CenterAndExpand" />
+
+
+            <Label
+                FontFamily="StudentSemiBoldFont"
+                FontSize="17"
+                IsVisible="{Binding IsMessageVisible}"
+                Text="{Binding Message}"
+                TextColor="Red" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

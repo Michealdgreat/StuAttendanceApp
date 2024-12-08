@@ -81,7 +81,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             {
                 var loginModel = new LoginModel
                 {
-                    TagId = TagId,
+                    tagId = TagId,
                 };
 
                 var jwtToken = await AuthenticateUser(loginModel);
@@ -109,7 +109,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 LoadingIndicator = false;
                 LoginButtonVisibility = true;

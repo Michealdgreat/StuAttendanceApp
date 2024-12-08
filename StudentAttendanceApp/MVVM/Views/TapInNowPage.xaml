@@ -174,9 +174,9 @@
 
                 <Border
                     Margin="0"
-                    BackgroundColor="Sienna"
+                    BackgroundColor="{StaticResource ButtonColor2}"
                     HeightRequest="100"
-                    Stroke="Sienna"
+                    Stroke="{StaticResource ButtonColor2}"
                     StrokeThickness="5"
                     WidthRequest="300">
 
