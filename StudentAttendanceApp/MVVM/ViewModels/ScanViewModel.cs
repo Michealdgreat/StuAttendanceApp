@@ -202,7 +202,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                     System.Diagnostics.Debug.WriteLine($"NFC: Record Type Format: {record.TypeFormat}");
                     System.Diagnostics.Debug.WriteLine($"NFC: Record Mime Type: {record.MimeType ?? "N/A"}");
 
-                    // More robust message extraction
+                    // More message extraction
                     string message = ExtractRecordMessage(record);
 
                     if (!string.IsNullOrWhiteSpace(message))
@@ -260,7 +260,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             }
         }
 
-        // Implement IDisposable or use a destructor to unsubscribe from events
+        // unsubscribing from events
         public void Dispose()
         {
             UnsubscribeEvents();

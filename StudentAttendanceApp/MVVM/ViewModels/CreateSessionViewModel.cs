@@ -8,6 +8,8 @@ using StudentAttendanceApp.MVVM.ViewModels.Base;
 
 namespace StudentAttendanceApp.MVVM.ViewModels
 {
+    [QueryProperty(nameof(CourseId), "CourseId")]
+
     public partial class CreateSessionViewModel : BaseViewModel
     {
         // based on selected course

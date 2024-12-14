@@ -57,16 +57,28 @@ namespace StudentAttendanceApp.MVVM.ViewModels
 
         private async void InitializeSignalR()
         {
-            _hubConnection = new HubConnectionBuilder()
-                .WithUrl(EndPoints.loginHubEndPoint)
-                .Build();
 
-            _hubConnection.On<string>("ReceiveTagId", (tagId) =>
+            try
             {
-                TagId = tagId;
-            });
+                _hubConnection = new HubConnectionBuilder()
+                    .WithUrl(EndPoints.loginHubEndPoint)
+                    .Build();
 
-            await _hubConnection.StartAsync();
+                _hubConnection.On<string>("ReceiveTagId", (tagId) =>
+                {
+                    TagId = tagId;
+                });
+
+                await _hubConnection.StartAsync();
+            }
+            catch (HttpRequestException)
+            {
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         [RelayCommand]

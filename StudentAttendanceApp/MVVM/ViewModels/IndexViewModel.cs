@@ -24,5 +24,18 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             await Shell.Current.GoToAsync(nameof(CreateSessionPage));
         }
 
+        [RelayCommand]
+        private async Task ManageCourse()
+        {
+            await Shell.Current.GoToAsync(nameof(ManageCoursePage));
+        }
+
+
+        [RelayCommand]
+        private async Task ManageSession()
+        {
+            await Shell.Current.GoToAsync(nameof(ManageSessionPage));
+        }
+
     }
 }
