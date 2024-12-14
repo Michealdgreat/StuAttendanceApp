@@ -62,6 +62,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Documentation\**" />
+	  <Compile Remove="Documentation\**" />
+	  <EmbeddedResource Remove="Documentation\**" />
+	  <MauiCss Remove="Documentation\**" />
+	  <MauiXaml Remove="Documentation\**" />
+	  <None Remove="Documentation\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="Resources\AppIcon\appicon.svg" />
 		<None Remove="Resources\AppIcon\appiconfg.svg" />
 	</ItemGroup>
