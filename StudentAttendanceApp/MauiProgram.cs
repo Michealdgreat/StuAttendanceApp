@@ -47,6 +47,9 @@ namespace StudentAttendanceApp
             builder.Services.AddTransient<TapInNowPage>();
             builder.Services.AddTransient<CreateSessionPage>();
             builder.Services.AddTransient<CreateCoursePage>();
+            builder.Services.AddTransient<ManageCoursePage>();
+            builder.Services.AddTransient<ManageSessionPage>();
+            builder.Services.AddTransient<CourseDetailsPage>();
 
 
             builder.Services.AddTransient<ProfileViewModel>();
@@ -58,7 +61,9 @@ namespace StudentAttendanceApp
             builder.Services.AddTransient<TapInNowViewModel>();
             builder.Services.AddTransient<CreateCourseViewModel>();
             builder.Services.AddTransient<CreateSessionViewModel>();
-
+            builder.Services.AddTransient<ManageCourseViewModel>();
+            builder.Services.AddTransient<ManageSessionViewModel>();
+            builder.Services.AddTransient<CourseDetailsViewModel>();
 
 
             builder.Services.AddSingleton<CommonService>();
