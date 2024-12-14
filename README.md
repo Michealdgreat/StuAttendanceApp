@@ -1,5 +1,5 @@
 # StuAttendanceApp(TapIn) 
-
+TapIn is a Student Attendance mobile application designed for educators who need an efficient way to manage and track student attendance. Built with .NET MAUI.
 
 ## Screenshots
 <img src="StudentAttendanceApp/Documentation/TapInScreen1.jpg" alt="screenshot" width="200"/>
