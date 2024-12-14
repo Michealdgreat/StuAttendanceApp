@@ -8,13 +8,14 @@ namespace StudentAttendanceApp.Services
 {
     public static class EndPoints
     {
-        private const string baseUrl = "https://zr2r4n7r-7105.euw.devtunnels.ms/api";
-        private const string baseUrl2 = "https://zr2r4n7r-7105.euw.devtunnels.ms";
+        private const string baseUrl = "https://www.tapin.linkpc.net/api";
+        private const string baseUrl2 = "https://www.tapin.linkpc.net";
 
         // User Endpoints
         public const string loginEndPoint = $"{baseUrl}/user/Login";
         public const string loginHubEndPoint = $"{baseUrl2}/loginHub";
         public const string GetUserByIdEndPoint = $"{baseUrl}/user/";
+        public const string GetUserByTagIdEndPoint = $"{baseUrl}/user/GetByTagId?tagId=";
         public const string RegisterUserEndpoint = $"{baseUrl}/user/Register";
         public const string DeleteUser = $"{baseUrl}/user/DeleteUser";
 
