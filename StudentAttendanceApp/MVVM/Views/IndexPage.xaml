@@ -147,7 +147,9 @@
                     HeightRequest="70"
                     Stroke="{StaticResource Gray600}"
                     StrokeThickness="1">
-
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ManageCourseCommand}" />
+                    </Border.GestureRecognizers>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
@@ -188,7 +190,9 @@
                     HeightRequest="70"
                     Stroke="{StaticResource Gray600}"
                     StrokeThickness="1">
-
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ManageSessionCommand}" />
+                    </Border.GestureRecognizers>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>

@@ -5,20 +5,74 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:StudentAttendanceApp.MVVM.Models"
+    xmlns:pg="clr-namespace:StudentAttendanceApp.MVVM.Views"
     xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
-    xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
+    Title="Manage Course"
     x:DataType="vm:ManageCourseViewModel"
+    Appearing="ContentPage_Appearing"
     mc:Ignorable="d">
-    <ContentPage.BindingContext>
-        <vm:ManageCourseViewModel />
-    </ContentPage.BindingContext>
-    <ContentPage.Content>
+
+    <ScrollView>
         <StackLayout>
+
             <Label
+                Margin="0,40,0,0"
+                FontFamily="StudentBlackFont"
+                FontSize="50"
                 HorizontalOptions="Center"
-                Text="Welcome to .NET MAUI!!!"
-                TextColor="Purple"
-                VerticalOptions="Center"/>
+                IsVisible="{Binding ShowCourses}"
+                Text="All Courses"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <Label
+                Margin="0,40,0,0"
+                FontFamily="StudentBoldFont"
+                FontSize="30"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding DoUserHaveAnyCourse}"
+                Text="Create a course First"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <CollectionView ItemsSource="{Binding Courses}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:CourseModel">
+                        <StackLayout Padding="10">
+
+                            <Border
+                                Margin="10"
+                                Padding="10"
+                                BackgroundColor="#404040"
+                                Stroke="{StaticResource Primary}"
+                                StrokeThickness="2">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageCourseViewModel}}, Path=CourseTappedCommand}" CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+                                <StackLayout>
+                                    <Label
+                                        CharacterSpacing="2"
+                                        FontFamily="StudentBlackFont"
+                                        FontSize="Title"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding CourseName}"
+                                        VerticalOptions="Center" />
+
+                                    <Label Text="{Binding CreatedAt, StringFormat='Created At: {0:MM/dd/yyyy}'}" />
+                                </StackLayout>
+
+
+                            </Border>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

@@ -7,14 +7,12 @@ namespace StudentAttendanceApp.MVVM.Views
 
     public partial class StartUpPage : ContentPage
     {
-
         private readonly LoginViewModel _loginViewModel;
         private readonly RegisterViewModel _registerViewModel;
         private readonly ITokenService _tokenService;
         private readonly CommonService _commonService;
         private readonly GetService _getService;
         private readonly HomeViewModel _homeViewModel;
-
 
         public StartUpPage(LoginViewModel loginViewModel, RegisterViewModel registerViewModel, ITokenService tokenService, CommonService commonService, GetService getService, HomeViewModel homeViewModel)
         {
