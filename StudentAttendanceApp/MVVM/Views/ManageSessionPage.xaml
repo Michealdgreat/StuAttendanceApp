@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="StudentAttendanceApp.MVVM.Views.ManageSessionPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:local="clr-namespace:StudentAttendanceApp.MVVM.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:StudentAttendanceApp.MVVM.Models"
+    xmlns:vm="clr-namespace:StudentAttendanceApp.MVVM.ViewModels"
+    x:DataType="vm:ManageSessionViewModel"
+    mc:Ignorable="d">
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Text="Session List"
+                TextColor="Purple"
+                VerticalOptions="Center" />
+
+            <Button Command="{Binding FetchSessionsCommand}" Text="Fetch Sessions" />
+
+            <CollectionView ItemsSource="{Binding Sessions}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:SessionModel">
+                        <StackLayout Padding="10">
+                            <Label FontSize="24" Text="{Binding Name}" />
+                            <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" />
+                            <Label Text="{Binding StartAt, StringFormat='Start: {0:hh\\:mm}'}" />
+                            <Label Text="{Binding EndAt, StringFormat='End: {0:hh\\:mm}'}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
