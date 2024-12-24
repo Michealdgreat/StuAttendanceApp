@@ -7,6 +7,7 @@ using StudentAttendanceApp.MVVM.ViewModels.Base;
 using StudentAttendanceApp.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace StudentAttendanceApp.MVVM.ViewModels
@@ -127,14 +128,14 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
         }
 
         [RelayCommand]
-        public async Task TapInAsync()
+        public async Task TapInAsync(CancellationToken cancellationToken)
         {
             if (SelectedSession == null) return;
             try
@@ -146,28 +147,28 @@ namespace StudentAttendanceApp.MVVM.ViewModels
 
                     var userdetails = await _getService.GetByOne<UserDtoForClaims, dynamic>(tagId, EndPoints.GetUserByTagIdEndPoint);
 
-                    userSigningInId = userdetails.UserId;
+                    UserSigningInId = userdetails.UserId;
                 }
 
                 var attendance = new AttendanceModel
                 {
                     AttendanceId = Guid.NewGuid(),
                     SessionId = SelectedSession.SessionId,
-                    StudentId = userSigningInId,
+                    StudentId = UserSigningInId,
                     SignInAt = DateTime.Now
                 };
 
-                await _postService.PostAsync<AttendanceModel, PostResponseMessage>(attendance, EndPoints.CreateAttendanceRecord);
+                await _postService.PostAsync<AttendanceModel, PostResponseMessage>(attendance, EndPoints.CreateAttendanceRecord, cancellationToken);
             }
             catch (Exception)
             {
 
-               
+
             }
         }
 
         [RelayCommand]
-        public async Task LeaveAsync()
+        public async Task LeaveAsync(CancellationToken cancellationToken)
         {
             if (SelectedSession == null) return;
 
@@ -180,7 +181,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
 
                     var userdetails = await _getService.GetByOne<UserDtoForClaims, dynamic>(tagId, EndPoints.GetUserByTagIdEndPoint);
 
-                    userSigningInId = userdetails.UserId;
+                    UserSigningInId = userdetails.UserId;
                 }
 
 
@@ -188,16 +189,16 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                 {
                     AttendanceId = Guid.NewGuid(),
                     SessionId = SelectedSession.SessionId,
-                    StudentId = userSigningInId,
+                    StudentId = UserSigningInId,
                     SignOutAt = DateTime.Now
                 };
 
-                await _postService.PostAsync<AttendanceModel, PostResponseMessage>(attendance, EndPoints.UpdateAttendanceRecord);
+                await _postService.PostAsync<AttendanceModel, PostResponseMessage>(attendance, EndPoints.UpdateAttendanceRecord, cancellationToken);
             }
             catch (Exception)
             {
 
-                
+
             }
 
         }

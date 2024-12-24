@@ -13,15 +13,20 @@
     Title="Register"
     Padding="20"
     x:DataType="vm:RegisterViewModel"
+    Disappearing="ContentPage_Disappearing"
     BackgroundColor="{StaticResource Gray650}"
     HideSoftInputOnTapped="True"
     mc:Ignorable="d">
     <ContentPage.Behaviors>
-        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
+        <toolkit:StatusBarBehavior
+            StatusBarColor="{StaticResource Gray650}"
+            StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
-        <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+        <ScrollView
+            HorizontalScrollBarVisibility="Never"
+            VerticalScrollBarVisibility="Never">
             <StackLayout>
                 <Label
                     Margin="0,20,0,0"
@@ -42,7 +47,8 @@
                     Padding="20"
                     Spacing="10">
 
-                    <Grid ColumnDefinitions=".5*,.5*">
+                    <Grid
+                        ColumnDefinitions=".5*,.5*">
 
                         <Border
                             Margin="5"
@@ -50,7 +56,8 @@
                             Stroke="#404040">
 
                             <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="10" />
+                                <RoundRectangle
+                                    CornerRadius="10" />
                             </Border.StrokeShape>
                             <FieldEntry:FormHelper
                                 Margin="10,0,0,0"
@@ -68,7 +75,8 @@
                             Stroke="#404040">
 
                             <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="10" />
+                                <RoundRectangle
+                                    CornerRadius="10" />
                             </Border.StrokeShape>
                             <FieldEntry:FormHelper
                                 Margin="10,0,0,0"
@@ -87,7 +95,8 @@
                         Stroke="#404040">
 
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
+                            <RoundRectangle
+                                CornerRadius="10" />
                         </Border.StrokeShape>
                         <FieldEntry:FormHelper
                             Margin="10,0,0,0"
@@ -111,7 +120,8 @@
                         Stroke="#404040">
 
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
+                            <RoundRectangle
+                                CornerRadius="10" />
                         </Border.StrokeShape>
                         <FieldEntry:FormHelper
                             Margin="10,0,0,0"
@@ -129,7 +139,8 @@
                         Stroke="#404040">
 
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
+                            <RoundRectangle
+                                CornerRadius="10" />
                         </Border.StrokeShape>
                         <FieldEntry:FormHelper
                             Margin="10,0,0,0"
@@ -146,7 +157,8 @@
                         Stroke="{StaticResource Primary}">
 
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
+                            <RoundRectangle
+                                CornerRadius="10" />
                         </Border.StrokeShape>
                         <FieldEntry:FormHelper
                             Margin="10,0,0,0"

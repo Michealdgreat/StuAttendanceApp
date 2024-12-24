@@ -13,11 +13,11 @@
     Padding="20"
     x:DataType="vm:HomeViewModel"
     BackgroundColor="{StaticResource Gray650}"
-    Shell.NavBarIsVisible="False"
-    Shell.TabBarIsVisible="False"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="True"
     mc:Ignorable="d">
     <ContentPage.Behaviors>
-        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='DarkContent'}" />
     </ContentPage.Behaviors>
     <ContentPage.BindingContext>
         <vm:HomeViewModel />

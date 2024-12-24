@@ -9,5 +9,14 @@ namespace StudentAttendanceApp.MVVM.Views
             InitializeComponent();
             BindingContext = registerViewModel;
         }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            if (BindingContext is RegisterViewModel viewModel)
+            {
+                viewModel.CancelRegister();
+            }
+
+        }
     }
 }

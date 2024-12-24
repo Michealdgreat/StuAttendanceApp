@@ -30,7 +30,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         }
 
         [RelayCommand]
-        private async Task CreateCourseAsync()
+        private async Task CreateCourseAsync(CancellationToken cancellationToken)
         {
             IsLoading = true;
             IsMessageVisible = false;
@@ -46,7 +46,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             {
 
                 var response = await _postService.PostAsync<CourseModel, PostResponseMessage>(
-                    newCourse, EndPoints.CreateCourse);
+                    newCourse, EndPoints.CreateCourse, cancellationToken);
 
                 if (response != null && response.Status == 200)
                 {

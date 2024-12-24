@@ -18,7 +18,7 @@ namespace StudentAttendanceApp.Services
             PropertyNameCaseInsensitive = true
         };
 
-        public async Task<TResponse?> PostAsync<TRequest, TResponse>(TRequest data, string endpoint)
+        public async Task<TResponse?> PostAsync<TRequest, TResponse>(TRequest data, string endpoint, CancellationToken cancellationToken)
         {
             try
             {
@@ -28,11 +28,11 @@ namespace StudentAttendanceApp.Services
                 var json = JsonSerializer.Serialize(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await _httpClient.PostAsync(endpoint, content);
+                var response = await _httpClient.PostAsync(endpoint, content, cancellationToken);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var responseData = await response.Content.ReadAsStringAsync();
+                    var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
                     var result = JsonSerializer.Deserialize<TResponse>(responseData, JsonSerializerOptions);
                     return result;
                 }

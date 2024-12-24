@@ -46,6 +46,19 @@ namespace StudentAttendanceApp
         protected override Window CreateWindow(IActivationState? activationState)
         {
 
+
+            //try
+            //{
+            //    return new Window(new NavigationPage(new HomePage(loginViewModel, _registerViewModel)));
+
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
+
+
             return new Window(new NavigationPage(new StartUpPage(loginViewModel, _registerViewModel, _tokenService, _commonService, _getService, _homeViewModel)));
         }
 

@@ -1,18 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.ComponentModel;
-using StudentAttendanceApp.MVVM.ViewModels.Base;
 using System.Collections.ObjectModel;
+using System.Threading;
+using System.Threading.Tasks;
 using StudentAttendanceApp.MVVM.Models;
 using StudentAttendanceApp.Services;
 using StudentAttendanceApp.MVVM.Views;
-
+using Microsoft.Maui.Controls;
+using StudentAttendanceApp.MVVM.ViewModels.Base; // Assuming you're using .NET MAUI; use Xamarin.Forms if applicable
 
 namespace StudentAttendanceApp.MVVM.ViewModels
 {
     public partial class RegisterViewModel : BaseViewModel
     {
-
+        // Observable Properties
         [ObservableProperty]
         private string? firstName;
 
@@ -46,22 +47,29 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         [ObservableProperty]
         private bool departmentFieldVisibility = false;
 
-        public ObservableCollection<String> UserRoles { get; set; }
-
         [ObservableProperty]
         private string? selectedRole;
+
+        public ObservableCollection<string> UserRoles { get; set; }
+
         private readonly PostService _postService;
+
+        private CancellationTokenSource? _cancellationTokenSource;
+
         private readonly LoginViewModel _loginViewModel;
 
         public RegisterViewModel(PostService postService, LoginViewModel loginViewModel)
         {
-            UserRoles = ["Student", "Teacher"];
+
+            UserRoles = new ObservableCollection<string> { "Student", "Teacher" };
             SelectedRole = UserRoles.FirstOrDefault()!;
             UserRole = 0;
             UpdateFieldVisibility();
+
             _postService = postService;
             _loginViewModel = loginViewModel;
         }
+
 
         partial void OnSelectedRoleChanged(string? value)
         {
@@ -81,8 +89,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                 GroupFieldVisibility = true;
                 DepartmentFieldVisibility = false;
             }
-
-            if (SelectedRole == "Teacher")
+            else if (SelectedRole == "Teacher")
             {
                 UserRole = 1;
                 Group = string.Empty;
@@ -91,52 +98,82 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             }
         }
 
+
         [RelayCommand]
-        private async Task RegisterButton()
+        public async Task RegisterButtonAsync(CancellationToken ct)
         {
+
+            if (LoadingIndicator)
+                return;
+
             LoadingIndicator = true;
             RegisterButtonVisibility = false;
 
-            var registerModel = new RegisterModel
-            {
-                FirstName = FirstName,
-                LastName = LastName,
-                Email = Email,
-                TagId = TagId,
-                UserRole = UserRole,
-                StudentGroup = Group,
-                Department = Department,
-                AvatarUrl = string.Empty,
-                CreatedAt = DateTime.UtcNow,
-            };
 
-            await RegisterUserAsync(registerModel);
-        }
-
-
-        public async Task RegisterUserAsync(RegisterModel userRegisterModel)
-        {
-
+            _cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(ct);
+            var cancellationToken = _cancellationTokenSource.Token;
 
             try
             {
+                var registerModel = new RegisterModel
+                {
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Email = Email,
+                    TagId = TagId,
+                    UserRole = UserRole,
+                    StudentGroup = Group,
+                    Department = Department,
+                    AvatarUrl = string.Empty,
+                    CreatedAt = DateTime.UtcNow,
+                };
 
+                await RegisterUserAsync(registerModel, cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+
+                LoadingIndicator = false;
+                RegisterButtonVisibility = true;
+
+                _cancellationTokenSource?.Dispose();
+                _cancellationTokenSource = null;
+            }
+        }
+
+
+        public void CancelRegister()
+        {
+            if (_cancellationTokenSource != null && !_cancellationTokenSource.IsCancellationRequested)
+            {
+                _cancellationTokenSource.Cancel();
+            }
+        }
+
+
+        public async Task RegisterUserAsync(RegisterModel userRegisterModel, CancellationToken cancellationToken)
+        {
+            try
+            {
                 var responseObject = await _postService.PostAsync<RegisterModel, PostResponseMessage>(
-                    userRegisterModel, EndPoints.RegisterUserEndpoint);
+                    userRegisterModel, EndPoints.RegisterUserEndpoint, cancellationToken);
 
                 if (responseObject != null)
                 {
                     if (responseObject.Status == 10)
                     {
-
-                        var mainPage = Application.Current!.Windows[0].Page;
-                        await mainPage.DisplayAlert("Required", " fields required", "OK");
-                        LoadingIndicator = false;
-                        RegisterButtonVisibility = true;
+                        await Shell.Current.DisplayAlert("Required", "All fields are required.", "OK");
                         TagId = null;
                     }
-
-                    if (responseObject.Status == 200)
+                    else if (responseObject.Status == 200)
                     {
 
                         FirstName = null;
@@ -146,43 +183,27 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                         UserRole = 0;
                         Group = null;
                         Department = null;
-                        LoadingIndicator = false;
-                        RegisterButtonVisibility = true;
 
-                        var mainPage = Application.Current!.Windows[0].Page;
-                        await mainPage.DisplayAlert("SUCCESS", "Account created successfully, you can login now!", "OK");
-
-                        await mainPage.Navigation.PushAsync(new LoginPage(_loginViewModel));
+                        await Shell.Current.DisplayAlert("SUCCESS", "Account created successfully! You can now log in.", "OK");
 
 
-
+                        await Shell.Current.GoToAsync($"///{nameof(LoginPage)}");
                     }
-
-
-
                 }
                 else
                 {
-                    LoadingIndicator = false;
-                    RegisterButtonVisibility = true;
-                    TagId = null;
-                    var mainPage = Application.Current!.Windows[0].Page;
-                    await mainPage.DisplayAlert("Error", "Something went wrong while processing your request", " Please try again.");
+                    await Shell.Current.DisplayAlert("Error", "Something went wrong while processing your request. Please try again.", "OK");
                 }
+            }
+            catch (OperationCanceledException)
+            {
+
+                throw;
             }
             catch (Exception)
             {
-                LoadingIndicator = false;
-                RegisterButtonVisibility = true;
-                TagId = null;
-                var mainPage = Application.Current!.Windows[0].Page;
-                await mainPage.DisplayAlert("Error", "Something went wrong while processing your request", " Please try again.");
+                await Shell.Current.DisplayAlert("Error", "Something went wrong while processing your request. Please try again.", "OK");
             }
-
         }
-
     }
-
 }
-
-

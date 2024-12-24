@@ -12,5 +12,15 @@ namespace StudentAttendanceApp.MVVM.Views
             BindingContext = loginViewModel;
 
         }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            if (BindingContext is LoginViewModel loginViewModel)
+            {
+
+                loginViewModel.CancelLogin();
+
+            }
+        }
     }
 }

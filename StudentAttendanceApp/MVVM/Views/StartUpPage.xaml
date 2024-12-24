@@ -6,15 +6,20 @@
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Appearing="ContentPage_Loaded"
     BackgroundColor="{StaticResource Gray650}"
-    Loaded="ContentPage_Loaded"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
     <ContentPage.Behaviors>
-        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Gray650}" StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
+        <toolkit:StatusBarBehavior
+            StatusBarColor="{StaticResource Gray650}"
+            StatusBarStyle="{AppThemeBinding Dark='LightContent', Light='LightContent'}" />
     </ContentPage.Behaviors>
-    <VerticalStackLayout VerticalOptions="Center">
-        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+    <VerticalStackLayout
+        VerticalOptions="Center">
+        <Grid
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
             <skia:SKLottieView
                 Background="{StaticResource Gray650}"
                 HeightRequest="40"

@@ -1,16 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkit.Mvvm.Messaging.Messages;
 using Microsoft.AspNetCore.SignalR.Client;
 using StudentAttendanceApp.MVVM.Models;
 using StudentAttendanceApp.MVVM.ViewModels.Base;
-using StudentAttendanceApp.MVVM.ViewModels.Messenger;
 using StudentAttendanceApp.MVVM.Views;
 using StudentAttendanceApp.Services;
-using System.ComponentModel;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace StudentAttendanceApp.MVVM.ViewModels
 {
@@ -19,8 +20,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         private readonly ITokenService _tokenService;
         private readonly CommonService _commonService;
         private readonly GetService _getService;
-        private HubConnection _hubConnection;
-
+        private HubConnection? _hubConnection;
 
         [ObservableProperty]
         private string? tagId;
@@ -34,6 +34,9 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         [ObservableProperty]
         private bool loginButtonVisibility = true;
 
+        // Manage a single CancellationTokenSource
+        private CancellationTokenSource? _cancellationTokenSource;
+
         public LoginViewModel(ITokenService tokenService, CommonService commonService, GetService getService)
         {
             _tokenService = tokenService;
@@ -43,21 +46,13 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         }
 
         [RelayCommand]
-        public void viewTagid()
+        public void ViewTagid()
         {
-            if (IsPasswordVisible == false)
-            {
-                IsPasswordVisible = true;
-            }
-            else
-            {
-                IsPasswordVisible = false;
-            }
+            IsPasswordVisible = !IsPasswordVisible;
         }
 
         private async void InitializeSignalR()
         {
-
             try
             {
                 _hubConnection = new HubConnectionBuilder()
@@ -73,21 +68,27 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             }
             catch (HttpRequestException)
             {
-
+                // Handle specific exceptions if needed
             }
             catch (Exception)
             {
-
+                // Handle other exceptions
             }
         }
 
         [RelayCommand]
-        public async Task LoginButton()
+        public async Task LoginButtonAsync()
         {
-            //var commonService = MauiProgram.ServiceProvider!.GetService<CommonService>();
+            // Prevent multiple concurrent login attempts
+            if (LoadingIndicator)
+                return;
 
             LoadingIndicator = true;
             LoginButtonVisibility = false;
+
+            // Initialize a new CancellationTokenSource for this operation
+            _cancellationTokenSource = new CancellationTokenSource();
+            var ct = _cancellationTokenSource.Token;
 
             try
             {
@@ -96,43 +97,69 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                     tagId = TagId,
                 };
 
-                var jwtToken = await AuthenticateUser(loginModel);
-
+                // Use the managed cancellation token
+                var jwtToken = await AuthenticateUser(loginModel, ct);
 
                 if (jwtToken != null)
                 {
                     await _tokenService.SaveTokenAsync(jwtToken);
 
                     var userTokenDetails = await _tokenService.GetUserDetailsFromToken();
-
-                    //loading user data for profile view
+                    // Load user data for profile view
                     var user = await _getService.GetByOne<UserModel, dynamic>(userTokenDetails.UserId, EndPoints.GetUserByIdEndPoint);
 
+                    if (user == null)
+                    {
+                        return;
+                    }
+
                     TagId = string.Empty;
+
+                    // Reset UI indicators
                     LoadingIndicator = false;
                     LoginButtonVisibility = true;
 
                     _commonService?.InitializeAppShell();
                     await Shell.Current.GoToAsync($"///{nameof(ProfilePage)}", true, new Dictionary<string, object>
-        {
+                    {
                         { "UserDetails", user }
                     });
-                    //WeakReferenceMessenger.Default.Send(new ValueChangedMessage<UserModel>(user));
-
+                }
+                else
+                {
+                    // Handle unsuccessful login
+                    // Optionally, show an error message to the user
                 }
             }
-            catch (Exception ex)
+            catch (OperationCanceledException)
             {
+               
+            }
+            catch (Exception)
+            {
+              
+            }
+            finally
+            {
+               
                 LoadingIndicator = false;
                 LoginButtonVisibility = true;
 
+                _cancellationTokenSource.Dispose();
+                _cancellationTokenSource = null;
             }
-
-
         }
 
+        // Method to cancel the ongoing login operation
+        public void CancelLogin()
+        {
+            if (_cancellationTokenSource != null && !_cancellationTokenSource.IsCancellationRequested)
+            {
+                _cancellationTokenSource.Cancel();
+            }
+        }
 
-        private static async Task<string> AuthenticateUser(LoginModel loginModel)
+        private static async Task<string?> AuthenticateUser(LoginModel loginModel, CancellationToken cancellationToken)
         {
             try
             {
@@ -140,23 +167,30 @@ namespace StudentAttendanceApp.MVVM.ViewModels
                 var json = JsonSerializer.Serialize(loginModel);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync(EndPoints.loginEndPoint, content);
+                // Use the cancellation token with the request
+                var response = await client.PostAsync(EndPoints.loginEndPoint, content, cancellationToken);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var responseData = await response.Content.ReadAsStringAsync();
+                    // Pass the cancellation token to ReadAsStringAsync
+                    var responseData = await response.Content.ReadAsStringAsync(cancellationToken);
                     return responseData;
                 }
                 else
                 {
-                    return null!;
-
+                    // Optionally, handle different status codes
+                    return null;
                 }
+            }
+            catch (OperationCanceledException)
+            {
+                // Optionally handle cancellation
+                throw;
             }
             catch (Exception)
             {
-                return null!;
-
+                // Optionally, log the exception
+                return null;
             }
         }
     }

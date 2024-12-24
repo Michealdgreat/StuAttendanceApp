@@ -45,7 +45,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
         }
 
         [RelayCommand]
-        private async Task CreateSessionAsync()
+        private async Task CreateSessionAsync(CancellationToken cancellationToken)
         {
             IsLoading = true;
             IsMessageVisible = false;
@@ -64,7 +64,7 @@ namespace StudentAttendanceApp.MVVM.ViewModels
             {
 
                 var response = await _postService.PostAsync<SessionModel, PostResponseMessage>(
-                    newSession, EndPoints.CreateSession);
+                    newSession, EndPoints.CreateSession, cancellationToken);
 
                 if (response != null && response.Status == 200)
                 {
